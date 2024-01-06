@@ -1,0 +1,216 @@
+﻿@page "/_pc/casino/rooms"
+@inherits CasinoComponentBase
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@PageTitle />
+<PageContainer Title=@PageTitle>
+    <ChildContent>
+        @{
+            var cardTitle = this.WebLocalString("可参与的房间", "Valid Rooms");
+        }
+        <div class="standardList">
+            <Card Class="listCard"
+                  Title=@cardTitle
+                  Style="margin-top: 24px;"
+                  BodyStyle="padding: 0 32px 40px 32px">
+                <ChildContent>
+                    <AntList TItem="MixRoom"
+                             DataSource="ValidRooms"
+                             ItemLayout="ListItemLayout.Horizontal">
+                        <ListItem>
+                            @{
+                                var kindItem = new EnumItem<GameKind>(context.Request.Kind);
+                                var assetState = Blockchain.Singleton.CurrentSnapshot.Assets.TryGet(context.Request.AssetId);
+                                var mk = this.WebLocalString($"抽佣比例", $"Commission Ratio per round");
+                                var msg = this.WebLocalString($"{context.Request.CommissionValue}/1000", $"{context.Request.CommissionValue}/1000");
+                                var blocks = Game.PeroidBlocks(context.Request);
+                                if (blocks == 10) blocks = 20;
+                                var speed = this.WebLocalString($"每局周期: {blocks} 区块", $"Period:  {blocks} blocks");
+                                var stateItem = new EnumItem<RoomPermission>(context.Request.Permission);
+                                var state = this.WebLocalString($"房间状态:  {stateItem.ToWebString(this)}", $"Room State:  {stateItem.ToWebString(this)}");
+                            }
+                            <div class="listContent">
+                                <div class="listContentItem">
+                                    <Popover Placement="Placement.TopLeft">
+                                        <TitleTemplate>
+                                            <span>@context.RoomId</span>
+                                        </TitleTemplate>
+                                        <ContentTemplate>
+                                            <div>
+                                                <p>@this.WebLocalString($"下注地址:{context.BetAddress.ToAddress()}",$"Bet Address:{context.BetAddress.ToAddress()}")</p>
+                                                <p>@this.WebLocalString($"奖池地址:{context.PoolAddress.ToAddress()}",$"Pool Address:{context.PoolAddress.ToAddress()}")</p>
+                                                <p>@this.WebLocalString($"房费地址:{context.FeeAddress.ToAddress()}",$"Fee Address:{context.FeeAddress.ToAddress()}")</p>
+                                                <p>@this.WebLocalString($"庄池地址:{context.BankerAddress.ToAddress()}",$"Banker Address:{context.BankerAddress.ToAddress()}")</p>
+                                                <p>@this.WebLocalString($"房主地址:{context.Holder.ToAddress()}",$"Holder Address:{context.Holder.ToAddress()}")</p>
+                                            </div>
+                                        </ContentTemplate>
+                                        <ChildContent>
+                                            <span>@this.WebLocalString("房间 Id:","Room Id:")</span>
+                                            <p>@context.RoomId </p>
+                                        </ChildContent>
+                                    </Popover>
+                                </div>
+                                <div class="listContentItem">
+                                    <span>@this.WebLocalString("娱乐类型","Game Type")</span>
+                                    <p>@kindItem.ToWebString(this) </p>
+                                </div>
+                                <div class="listContentItem">
+                                    <span>@this.WebLocalString("下注资产","Bet Asset")</span>
+                                    <p>@assetState.GetName() </p>
+                                </div>
+
+                                <div class="listContentItem">
+                                    <span>@mk</span>
+                                    <p>@msg </p>
+                                </div>
+                                <div class="listContentItem">
+                                    <span>@this.WebLocalString("局速","Game Speed")</span>
+                                    <p>@speed </p>
+                                </div>
+                                <div class="listContentItem">
+                                    <span>@this.WebLocalString("房间状态","Room State")</span>
+                                    <p>@state </p>
+                                </div>
+                                <div class="listContentItem">
+                                    @if (context.Request.Kind == GameKind.EatSmall)
+                                    {
+                                        <a href="/_pc/casino/luckeatsmall/@context.BetAddress.ToAddress()" target="_blank">@this.WebLocalString("进入房间","Go in room")</a>
+                                    }
+                                    else if (context.Request.Kind == GameKind.Lotto)
+                                    {
+                                        <a href="/_pc/casino/lotto/@context.BetAddress.ToAddress()" target="_blank">@this.WebLocalString("进入房间","Go in room")</a>
+                                    }
+                                </div>
+                            </div>
+                        </ListItem>
+                    </AntList>
+                </ChildContent>
+            </Card>
+        </div>
+    </ChildContent>
+</PageContainer>
+<style type="text/css">
+    .standardList .ant-card-head {
+        border-bottom: none;
+    }
+
+    .standardList .ant-card-head-title {
+        padding: 24px 0;
+        line-height: 32px;
+    }
+
+    .standardList .ant-card-extra {
+        padding: 24px 0;
+    }
+
+    .standardList .ant-list-pagination {
+        margin-top: 24px;
+        text-align: right;
+    }
+
+    .standardList .ant-avatar-lg {
+        width: 48px;
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .standardList .headerInfo {
+        position: relative;
+        text-align: center;
+    }
+
+        .standardList .headerInfo > span {
+            display: inline-block;
+            margin-bottom: 4px;
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        .standardList .headerInfo > p {
+            margin: 0;
+            color: rgba(0, 0, 0, 0.85);
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+        .standardList .headerInfo > em {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 56px;
+            background-color: #f0f0f0;
+        }
+
+    .standardList .listContent {
+        font-size: 0;
+    }
+
+        .standardList .listContent .listContentItem {
+            display: inline-block;
+            margin-left: 40px;
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+            .standardList .listContent .listContentItem > span {
+                line-height: 20px;
+            }
+
+            .standardList .listContent .listContentItem > p {
+                margin-top: 4px;
+                margin-bottom: 0;
+                line-height: 22px;
+            }
+
+    .standardList .extraContentSearch {
+        width: 272px;
+        margin-left: 16px;
+    }
+
+    .standardList .ant-list-item-action {
+        margin-left: 0;
+    }
+
+    .standardList .listContent {
+        margin-left: 0;
+    }
+
+        .standardList .listContent > div {
+            margin-left: 0;
+        }
+
+    .standardList .listCard .ant-card-head-title {
+        overflow: visible;
+    }
+
+    }
+
+    .standardList .headerInfo {
+        margin-bottom: 16px;
+    }
+
+        .standardList .headerInfo > em {
+            display: none;
+        }
+
+    }
+
+    .standardListForm .ant-form-item {
+        margin-bottom: 12px;
+    }
+
+        .standardListForm .ant-form-item:last-child {
+            margin-bottom: 32px;
+            padding-top: 4px;
+        }
+
+    .formResult {
+        width: 100%;
+    }
+
+        .formResult [class^='title'] {
+            margin-bottom: 8px;
+        }
+
+</style>

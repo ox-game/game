@@ -1,0 +1,191 @@
+﻿@page "/_m/bury"
+@layout CasinoMobileLayout
+@inherits MobileComponentBase
+@using OX.Wallets.Eths
+@{
+    var s = $"{PageTitle}     {Account?.Label}";
+}
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@s />
+
+<div class="box">
+    <Tabs DefaultActiveKey="1">
+        <TabBarExtraContentLeft>
+            <Button Class="balanceInfo" Type="@ButtonType.Link" Size="@ButtonSize.Small">@(this.AssetBalance.GetInternalValue() / Fixed8.D)</Button>
+            </TabBarExtraContentLeft>
+            <TabBarExtraContentRight>
+                <Button Icon="plus" OnClick="OpenBury" Type="@ButtonType.Primary">@this.WebLocalString("埋雷", "Bury")</Button>
+            </TabBarExtraContentRight>
+            <ChildContent>
+                <TabPane Key="1">
+                    <TabTemplate>                                <Badge Dot>   <a> @PageTitle</a>         </Badge>                               </TabTemplate>
+                <ChildContent>
+                    @if (this.BuryMergeModels.IsNotNullAndEmpty())
+                    {
+                        foreach (var bmm in this.BuryMergeModels)
+                        {
+                            var br = bmm.BuryRecord;
+                            var s = string.Empty;
+                            if (bmm.BuryMergeTx.IsNotNull())
+                            {
+                                s = $"{bmm.BuryMergeTx.ReplyBury.PrivateBuryRequest.CipherBuryPoint.ToString()}";
+                            }
+                            var tip = $"{br.BuryAmount.ToString()}  :  {br.Request.From.ToAddress().Omit()}  : {s}";
+                            <Tooltip Class="tip" Placement="Placement.RightTop" Title=@tip ArrowPointAtCenter="true" Trigger="@(new AntDesign.Trigger[] { AntDesign.Trigger.Click})">
+                                @if (bmm.index <= 100)
+                                {
+                                    @if (this.Account.IsNotNull() && br.Request.From == this.Account.ScriptHash)
+                                    {
+                                        <Button Size="@ButtonSize.Small" Danger Type="@ButtonType.Primary">@br.Request.PlainBuryPoint</Button>
+                                    }
+                                    else
+                                    {
+                                        <Button Size="@ButtonSize.Small" Danger>@br.Request.PlainBuryPoint</Button>
+                                    }
+                                }
+                                else
+                                {
+                                    @if (this.Account.IsNotNull() && br.Request.From == this.Account.ScriptHash)
+                                    {
+                                        <Button Size="@ButtonSize.Small" Type="@ButtonType.Primary">@br.Request.PlainBuryPoint</Button>
+                                    }
+                                    else
+                                    {
+                                        <Button Size="@ButtonSize.Small">@br.Request.PlainBuryPoint</Button>
+                                    }
+                                }
+                            </Tooltip>
+                        }
+                    }
+                </ChildContent>
+            </TabPane>
+            <TabPane Key="2">
+                <TabTemplate>@this.WebLocalString("历史统计", "Summary")</TabTemplate>
+                <ChildContent>
+
+                    <Collapse>
+                        <Panel Header="@this.WebLocalString("当前明码统计", "Current plain code")" Key="1">
+                            @if (this.Plains200.IsNotNullAndEmpty())
+                            {
+                                foreach (var c in this.Plains200)
+                                {
+                                    <Button Size="@ButtonSize.Small" Class="code">@c</Button>
+                                }
+                            }
+                        </Panel>
+                        <Panel Header="@this.WebLocalString("当前暗码统计", "Current secret code")" Key="2">
+                            @if (this.Chipers200.IsNotNullAndEmpty())
+                            {
+                                foreach (var c in this.Chipers200)
+                                {
+                                    <Button Size="@ButtonSize.Small" Class="code">@c</Button>
+                                }
+                            }
+                        </Panel>
+                        <Panel Header="@this.WebLocalString("历史明码统计", "All plain code")" Key="3">
+                            @if (this.PlainsAll.IsNotNullAndEmpty())
+                            {
+                                foreach (var c in this.PlainsAll)
+                                {
+                                    <Button Size="@ButtonSize.Small" Class="code">@c</Button>
+                                }
+                            }
+                        </Panel>
+                        <Panel Header="@this.WebLocalString("历史暗码统计", "All secret code")" Key="4">
+                            @if (this.ChipersAll.IsNotNullAndEmpty())
+                            {
+                                foreach (var c in this.ChipersAll)
+                                {
+                                    <Button Size="@ButtonSize.Small" Class="code">@c</Button>
+                                }
+                            }
+                        </Panel>
+                    </Collapse>
+                </ChildContent>
+            </TabPane>
+        </ChildContent>
+    </Tabs>
+</div>
+<div>
+    @if (this.Account.IsNotNull())
+    {
+        <Drawer Closable="true" Placement="bottom" Height="400" Visible="DrawerVisible" Title='@this.WebLocalString("埋雷", "Bury")' OnClose="_=>CloseBury()">
+            <Template style="height:90%">
+                <Form Model="@this.BuryModel"
+                  Style="margin-top: 8px;"
+                  OnFinish="GoBury">
+                    <Row Gutter="8">                       
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("余额","Balance")" ShowFeedbackOnError="true">
+                                <Input ReadOnly=true @bind-Value="@this.AssetBalance"></Input>
+                            </FormItem>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("金额","Amount")" ShowFeedbackOnError="true">
+                                <AntDesign.InputNumber @bind-Value="@context.Amount" Min="1" TValue="uint" Max="100000000" PlaceHolder='@this.WebLocalString("请输入埋雷金额","please enter bury amount")'></AntDesign.InputNumber>
+                            </FormItem>
+                        </AntDesign.Col>
+
+                    </Row>
+
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="12">
+
+                            <FormItem Label="@this.WebLocalString("明码","Plain Code")" ShowFeedbackOnError="true">
+                                <AntDesign.InputNumber @bind-Value="@context.PlainCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷明码","please enter bury plain code")'></AntDesign.InputNumber>
+                            </FormItem>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="12">
+
+                            <FormItem Label="@this.WebLocalString("暗码","Secret Code")" ShowFeedbackOnError="true">
+                                <AntDesign.InputNumber @bind-Value="@context.SecretCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷暗码","please enter bury secret code")'></AntDesign.InputNumber>
+                            </FormItem>
+                        </AntDesign.Col>
+
+                    </Row>
+                 
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="18">
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="6">
+                            <Button Icon="plus" HtmlType="submit" Type="primary" Disabled=false>@this.WebLocalString("埋雷", "Bury")</Button>
+                        </AntDesign.Col>
+                    </Row>
+                </Form>
+            </Template>
+        </Drawer>
+    }
+</div>
+
+
+
+
+
+<style>
+    .box {
+        padding: 8px;
+    }
+
+    .bt {
+        margin: 3px;
+        padding: 1px;
+    }
+
+    .tip {
+        margin: 1px;
+        padding: 0px;
+    }
+
+    .code {
+        margin: 2px;
+        padding: 3px;
+    }
+
+    .recordlink {
+        margin: 10px;
+    }
+
+    .balanceInfo {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+</style>

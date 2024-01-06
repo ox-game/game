@@ -1,0 +1,452 @@
+﻿<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing.Primitives" name="System.Drawing.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cb_specialchar.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>201, 213</value>
+  </data>
+  <assembly alias="System.Windows.Forms.Primitives" name="System.Windows.Forms.Primitives, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cb_specialchar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 4, 5, 4</value>
+  </data>
+  <data name="cb_specialchar.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>260, 31</value>
+  </data>
+  <assembly alias="System.Private.CoreLib" name="System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e" />
+  <data name="cb_specialchar.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;cb_specialchar.Name" xml:space="preserve">
+    <value>cb_specialchar</value>
+  </data>
+  <data name="&gt;&gt;cb_specialchar.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkComboBox, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cb_specialchar.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;cb_specialchar.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lb_specialchar.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lb_specialchar.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lb_specialchar.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>19, 216</value>
+  </data>
+  <data name="lb_specialchar.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_specialchar.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_specialchar.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>13</value>
+  </data>
+  <data name="lb_specialchar.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_specialchar.Name" xml:space="preserve">
+    <value>lb_specialchar</value>
+  </data>
+  <data name="&gt;&gt;lb_specialchar.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_specialchar.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_specialchar.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tb_amount.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>795, 152</value>
+  </data>
+  <data name="tb_amount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>6, 6, 6, 6</value>
+  </data>
+  <data name="tb_amount.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>250, 30</value>
+  </data>
+  <data name="tb_amount.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tb_amount.Name" xml:space="preserve">
+    <value>tb_amount</value>
+  </data>
+  <data name="&gt;&gt;tb_amount.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkTextBox, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tb_amount.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;tb_amount.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tb_balance.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>201, 152</value>
+  </data>
+  <data name="tb_balance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>6, 6, 6, 6</value>
+  </data>
+  <data name="tb_balance.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>260, 30</value>
+  </data>
+  <data name="tb_balance.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tb_balance.Name" xml:space="preserve">
+    <value>tb_balance</value>
+  </data>
+  <data name="&gt;&gt;tb_balance.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkTextBox, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tb_balance.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;tb_balance.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="bt_bet.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>793, 246</value>
+  </data>
+  <data name="bt_bet.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 4, 5, 4</value>
+  </data>
+  <data name="bt_bet.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>8, 7, 8, 7</value>
+  </data>
+  <data name="bt_bet.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>251, 42</value>
+  </data>
+  <data name="bt_bet.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>7</value>
+  </data>
+  <data name="bt_bet.Text" xml:space="preserve">
+    <value>Claim All</value>
+  </data>
+  <data name="&gt;&gt;bt_bet.Name" xml:space="preserve">
+    <value>bt_bet</value>
+  </data>
+  <data name="&gt;&gt;bt_bet.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkButton, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;bt_bet.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;bt_bet.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cbAccounts.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>201, 89</value>
+  </data>
+  <data name="cbAccounts.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 4, 5, 4</value>
+  </data>
+  <data name="cbAccounts.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>843, 31</value>
+  </data>
+  <data name="cbAccounts.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;cbAccounts.Name" xml:space="preserve">
+    <value>cbAccounts</value>
+  </data>
+  <data name="&gt;&gt;cbAccounts.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkComboBox, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbAccounts.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;cbAccounts.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lb_from.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="lb_from.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>19, 93</value>
+  </data>
+  <data name="lb_from.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_from.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_from.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="lb_from.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_from.Name" xml:space="preserve">
+    <value>lb_from</value>
+  </data>
+  <data name="&gt;&gt;lb_from.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_from.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_from.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lb_betamt.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="lb_betamt.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>580, 155</value>
+  </data>
+  <data name="lb_betamt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_betamt.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_betamt.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="lb_betamt.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_betamt.Name" xml:space="preserve">
+    <value>lb_betamt</value>
+  </data>
+  <data name="&gt;&gt;lb_betamt.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_betamt.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_betamt.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lb_balance.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="lb_balance.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>19, 155</value>
+  </data>
+  <data name="lb_balance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_balance.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_balance.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="lb_balance.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_balance.Name" xml:space="preserve">
+    <value>lb_balance</value>
+  </data>
+  <data name="&gt;&gt;lb_balance.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_balance.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_balance.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="lb_Index.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="lb_Index.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>580, 30</value>
+  </data>
+  <data name="lb_Index.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_Index.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_Index.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="lb_Index.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_Index.Name" xml:space="preserve">
+    <value>lb_Index</value>
+  </data>
+  <data name="&gt;&gt;lb_Index.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_Index.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_Index.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="cb_Height.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>795, 25</value>
+  </data>
+  <data name="cb_Height.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 4, 5, 4</value>
+  </data>
+  <data name="cb_Height.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>249, 31</value>
+  </data>
+  <data name="cb_Height.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;cb_Height.Name" xml:space="preserve">
+    <value>cb_Height</value>
+  </data>
+  <data name="&gt;&gt;cb_Height.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkComboBox, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cb_Height.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;cb_Height.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lb_roomId.AutoSize" type="System.Boolean, System.Private.CoreLib">
+    <value>True</value>
+  </data>
+  <data name="lb_roomId.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>19, 30</value>
+  </data>
+  <data name="lb_roomId.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 0, 5, 0</value>
+  </data>
+  <data name="lb_roomId.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>86, 24</value>
+  </data>
+  <data name="lb_roomId.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>6</value>
+  </data>
+  <data name="lb_roomId.Text" xml:space="preserve">
+    <value>Claim to:</value>
+  </data>
+  <data name="&gt;&gt;lb_roomId.Name" xml:space="preserve">
+    <value>lb_roomId</value>
+  </data>
+  <data name="&gt;&gt;lb_roomId.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Controls.DarkLabel, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;lb_roomId.Parent" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;lb_roomId.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="panel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="panel.Location" type="System.Drawing.Point, System.Drawing.Primitives">
+    <value>0, 0</value>
+  </data>
+  <data name="panel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 4, 5, 4</value>
+  </data>
+  <data name="panel.Size" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>1086, 321</value>
+  </data>
+  <data name="panel.TabIndex" type="System.Int32, System.Private.CoreLib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel.Name" xml:space="preserve">
+    <value>panel</value>
+  </data>
+  <data name="&gt;&gt;panel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing.Primitives">
+    <value>11, 24</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing.Primitives">
+    <value>1086, 321</value>
+  </data>
+  <assembly alias="System.Drawing.Common" name="System.Drawing.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing.Common">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms.Primitives">
+    <value>5, 6, 5, 6</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>OXS</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>LuckEatSmallPositionBet</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>OX.Wallets.UI.Forms.DarkForm, ox.wallets.ui, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+</root>

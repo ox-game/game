@@ -1,0 +1,53 @@
+﻿@page "/_m/casino"
+@*@page "/_m/casino/room/{roomid}"*@
+@layout CasinoMobileLayout
+@inherits MobileComponentBase
+@{
+    var s = $"{LastBlock?.Index}     {Account?.Label}";
+}
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value="@s" />
+<Menu Mode="MenuMode.Horizontal">
+    @foreach (var room in this.ValidRooms)
+    {
+        @*var url = $"/_m/casino/room/{room.BetAddress.ToAddress()}";*@
+        <MenuItem Key="@room.RoomId.ToString()" OnClick="_=>OpenRoom(room)">
+            @room.RoomId
+        </MenuItem>
+    }
+</Menu>
+@if (this.Room.IsNotNull())
+{
+    if (this.Room.Request.Kind == GameKind.EatSmall)
+    {
+        <MobileLuckEatSmall Room=this.Room Account=this.Account LastBlock=this.LastBlock />
+    }
+    else if (this.Room.Request.Kind == GameKind.Lotto)
+    {
+        <MobileLotto Room=this.Room Account=this.Account LastBlock=this.LastBlock />
+    }
+}
+<style>
+    /*  body {
+            font-size: 1.4vw !important;
+        }*/
+    .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+        padding: 0 1vw !important;
+    }
+
+    .ant-menu-item, .ant-menu-submenu-title {
+        padding: 0 1vw !important;
+    }
+
+    /* .ant-menu{
+            font-size:1.4vw !important;
+        }
+
+        .ant-btn {
+            font-size: 1.4vw !important;
+        }
+
+        .ant-typography code{
+            font-size: 1.4vw !important;
+        }*/
+
+</style>

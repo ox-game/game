@@ -1,0 +1,185 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--<OutputType>Library</OutputType>-->
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>OX.UI.Casino</RootNamespace>
+    <Authors>gt</Authors>
+    <Copyright>gt</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Agent\**" />
+    <Compile Remove="API\**" />
+    <Compile Remove="Looting\**" />
+    <Compile Remove="Luck10X\**" />
+    <Compile Remove="LuckEatSmall\**" />
+    <Compile Remove="LuckTeamKill\**" />
+    <Compile Remove="Sangong\**" />
+    <EmbeddedResource Remove="Agent\**" />
+    <EmbeddedResource Remove="API\**" />
+    <EmbeddedResource Remove="Looting\**" />
+    <EmbeddedResource Remove="Luck10X\**" />
+    <EmbeddedResource Remove="LuckEatSmall\**" />
+    <EmbeddedResource Remove="LuckTeamKill\**" />
+    <EmbeddedResource Remove="Sangong\**" />
+    <None Remove="Agent\**" />
+    <None Remove="API\**" />
+    <None Remove="Looting\**" />
+    <None Remove="Luck10X\**" />
+    <None Remove="LuckEatSmall\**" />
+    <None Remove="LuckTeamKill\**" />
+    <None Remove="Sangong\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="AdminRooms.cs" />
+    <Compile Remove="AdminRooms.Designer.cs" />
+    <Compile Remove="BuryOnce.cs" />
+    <Compile Remove="BuryOnce.Designer.cs" />
+    <Compile Remove="Bury\BuryModule.cs" />
+    <Compile Remove="GameRoom.cs" />
+    <Compile Remove="GameRoom.Designer.cs" />
+    <Compile Remove="GuaranteeQuery.cs" />
+    <Compile Remove="GuaranteeQuery.Designer.cs" />
+    <Compile Remove="ManageRoomProof.cs" />
+    <Compile Remove="ManageRoomProof.Designer.cs" />
+    <Compile Remove="ManageRoomState.cs" />
+    <Compile Remove="ManageRoomState.Designer.cs" />
+    <Compile Remove="MyGuarantees.cs" />
+    <Compile Remove="MyGuarantees.Designer.cs" />
+    <Compile Remove="ResetRoomSplit.cs" />
+    <Compile Remove="ResetRoomSplit.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="AdminRooms.resx" />
+    <EmbeddedResource Remove="BuryOnce.resx" />
+    <EmbeddedResource Remove="GameRoom.resx" />
+    <EmbeddedResource Remove="GuaranteeQuery.resx" />
+    <EmbeddedResource Remove="ManageRoomProof.resx" />
+    <EmbeddedResource Remove="ManageRoomState.resx" />
+    <EmbeddedResource Remove="MyGuarantees.resx" />
+    <EmbeddedResource Remove="ResetRoomSplit.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="LuckEatSmall\LuckEatSmallBettingButton.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallMoreBettings.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallMoreBettings.Designer.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallPositionBet.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallPositionBet.Designer.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallPositionTrustBet.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallPositionTrustBet.Designer.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallRoomView.cs" />
+    <Compile Include="LuckEatSmall\LuckEatSmallTable.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="LuckEatSmall\LuckEatSmallMoreBettings.resx" />
+    <EmbeddedResource Include="LuckEatSmall\LuckEatSmallPositionBet.resx" />
+    <EmbeddedResource Include="LuckEatSmall\LuckEatSmallPositionTrustBet.resx" />
+    <EmbeddedResource Include="LuckEatSmall\LuckEatSmallRoomView.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ox.casino.core\ox.casino.core.csproj" />
+    <ProjectReference Include="..\ox.provider.casino\ox.provider.casino.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ox">
+      <HintPath>..\Lib\ox.dll</HintPath>
+    </Reference>
+    <Reference Include="ox.vm">
+      <HintPath>..\Lib\ox.vm.dll</HintPath>
+    </Reference>
+    <Reference Include="ox.wallets.core">
+      <HintPath>..\Lib\ox.wallets.core.dll</HintPath>
+    </Reference>
+    <Reference Include="ox.wallets.ui">
+      <HintPath>..\Lib\ox.wallets.ui.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AppendRoom.cs" />
+    <Compile Update="GameMining\GM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GameMining\GMViewHead.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="GameMining\NewGameMiningTasks.cs" />
+    <Compile Update="GameMining\PrizeButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="GameMining\SangongBettingButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="GameMining\SangongGM.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GameMining\GMSangongMoreBettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ViewCasinoTrustPool.cs" />
+    <Compile Update="MyPartnerLockRecords.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ShowRiddles.cs" />
+    <Compile Update="Bury\TrustBuryOnce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Bury\MyBuryHitQuery.cs" />
+    <Compile Update="Bury\MyBuryHitRecordButton.cs" />
+    <Compile Update="Bury\MyBuryRecordButton.cs" />
+    <Compile Update="Bury\ReplyBuryDetail.cs" />
+    <Compile Update="CommonAuthorize.cs" />
+    <Compile Update="CreateRoomGuaranteeForm.cs" />
+    <Compile Update="GuaranteeQueryButton.cs" />
+    <Compile Update="Bury\MyBuryQuery.cs" />
+    <Compile Update="RoomQueryButton.cs" />
+    <Compile Update="RoomQuery.cs" />
+    <Compile Update="PlayerQueryButton.cs" />
+    <Compile Update="OpenRoomsView.cs" />
+    <Compile Update="OpenRoomButton.cs" />
+    <Compile Update="Bury\BuryView.cs" />
+    <Compile Update="MorePrize - 复制 - 复制.Designer.cs">
+      <DependentUpon>MorePrize - 复制.Designer.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MorePrize - 复制.Designer.cs">
+      <DependentUpon>MorePrize.Designer.cs</DependentUpon>
+    </Compile>
+    <Compile Update="PrizePoolButton.cs" />
+    <Compile Update="RiddlesView.cs" />
+    <Compile Update="RiddlesButton.cs" />
+    <Compile Update="RiddlesHashButton.cs" />
+    <Compile Update="RiddlesHashView.cs" />
+    <Compile Update="VerifyRiddles.cs" />
+    <Compile Update="PrizeButton.cs" />
+    <Compile Update="CasinoRule.cs" />
+    <Compile Update="FollowRooms.cs" />
+    <Compile Update="NewRoomForm.cs" />
+    <Compile Update="Rooms.cs" />
+    <Compile Update="WebAgent\RoomAgentSetting.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MorePrize - 复制.resx">
+      <DependentUpon>MorePrize.resx</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.notecase\bin\Debug\net6.0-windows\bapps\casino\&#xD;&#xA;copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.mix\bin\Debug\net6.0-windows\bapps\casino\&#xD;&#xA;copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.web\bin\Debug\net6.0-windows\bapps\casino\" />
+  </Target>
+
+
+</Project>

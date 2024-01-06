@@ -1,0 +1,66 @@
+﻿@namespace OX.Mix.Components
+@inherits WebBoxComponentBase
+
+<div class="scrollable-container" id="scrollable-container">
+    <div class="background">
+
+        @if (this.Messages.IsNotNullAndEmpty()&&this.EthID.IsNotNull())
+        {
+            foreach (var context in this.Messages)
+            {
+
+                @if (context.AddressId == this.EthID.AddressID)
+                {
+                    <Paragraph>
+                        <Tag Color="#55acee">
+                            @context.AddressId.ToString() &nbsp;|&nbsp;@context.TimeStamp.ToDateTime().ToString("MM-dd HH:mm:ss")
+                        </Tag>
+                        <br />
+                        @context.Message
+                    </Paragraph>
+
+                }
+                else
+                {
+                    <Paragraph>
+                        <Text Code>
+                        @context.AddressId.ToString() &nbsp;|&nbsp;@context.TimeStamp.ToDateTime().ToString("MM-dd HH:mm:ss")
+                    </Text>
+                    <br />
+                    @context.Message
+                </Paragraph>
+                }
+            }
+        }
+    </div>
+</div>
+<Affix OffsetBottom=1>
+    <Comment Avatar="@(@"/_content/ox.metamask/img/avatar.png")">
+        <ContentTemplate>
+            <TextArea Rows="4" @bind-Value="@InputMesssage" />
+            <Button Class="btsend" OnClick="Send" type="primary">
+                @this.WebLocalString("发送消息","Send message")
+            </Button>
+        </ContentTemplate>
+    </Comment>
+</Affix>
+
+
+<style>
+    .scrollable-container {
+        height: 500px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .background {
+        margin: 0;
+        padding: 0;
+        height: 500px;
+        overflow-y: scroll;
+    }
+
+    .btsend {
+        margin-top: 3px;
+    }
+</style>

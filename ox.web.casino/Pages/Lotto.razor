@@ -1,0 +1,217 @@
+﻿@page "/_pc/casino/lotto/{betaddress}"
+@inherits RoomPage
+
+@{
+    string sTitle = string.Empty;
+    string sRoomId = string.Empty;
+    string s = string.Empty;
+    string assetName = string.Empty;
+    var sR = string.Empty;
+
+    if (this.Room.IsNotNull())
+    {
+        Fixed8 totalAmount = Fixed8.Zero;
+        if (this.Bettings.IsNotNullAndEmpty())
+        {
+            totalAmount = this.Bettings.Sum(m => m.Value.Amount);
+        }
+        var assetState = Blockchain.Singleton.CurrentSnapshot.Assets.TryGet(this.Room.Request.AssetId);
+        assetName = assetState.GetName();
+        sRoomId = this.Room.RoomId.ToString();
+        var kindItem = new EnumItem<GameKind>(this.Room.Request.Kind);
+        s = $"{this.CurrentIndex}       |{kindItem.ToWebString(this)}      |      {assetName}      |      {this.WebLocalString("奖池", "Pool Balance")}:{this.poolBalance}      |        {this.WebLocalString("投注", "Total Betting")}:{totalAmount}           |        {this.WebLocalString("开奖结果", "Lottery Result")}:{LotteryResult}";
+        sTitle = $"{sRoomId}--{kindItem.ToWebString(this)}";
+        sR = $"{sRoomId}#";
+    }
+
+}
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@sTitle />
+
+<GridRow>
+
+    <GridCol Span="16">
+        <PageHeader Class="site-page-header" Title="@sR" Subtitle="@s" />
+        @if (this.Prizes.IsNotNullAndEmpty())
+        {
+            <div class="prize">
+                @foreach (var cr in this.Prizes)
+                {
+                    <Tooltip Class="tip" Placement="Placement.RightTop" Title=@cr.ScriptHash.ToAddress() ArrowPointAtCenter="true" Trigger="@(new AntDesign.Trigger[] { AntDesign.Trigger.Click})">
+
+                        @if (this.HaveEthID && cr.ScriptHash == this.EthID.MapAddress)
+                        {
+                            <Button Danger>@cr.Value</Button>
+                        }
+                        else
+                        {
+                            <Button>@cr.Value</Button>
+                        }
+                    </Tooltip>
+                }
+            </div>
+        }
+        @if (this.Bettings.IsNotNullAndEmpty())
+        {
+            <div class="bettings">
+                <CardGrid Class="grid">
+                    <Card Class="card" Bordered=true BodyStyle="padding-bottom:3px;padding-top:3px;padding-left:3px;padding-right:3px;">
+                        <Body>
+                            @foreach (var betting in this.Bettings.Select(m => m.Value).OrderByDescending(m => m.Amount))
+                            {
+                                var tip = $"{betting.BetRequest.From.ToAddress()} -- {BetPack.ShowBetPoint(betting.BetRequest.BetPoint)}";
+                                <Tooltip Class="tip" Placement="Placement.RightTop" Title=@tip ArrowPointAtCenter="true" Trigger="@(new AntDesign.Trigger[] { AntDesign.Trigger.Click})">
+                                    @if (this.HaveEthID && betting.BetRequest.From == this.EthID.MapAddress)
+                                    {
+                                        <Button Danger>@betting.Amount</Button>
+                                    }
+                                    else
+                                    {
+                                        <Button>@betting.Amount</Button>
+                                    }
+                                </Tooltip>
+                            }
+                        </Body>
+                    </Card>
+                </CardGrid>
+            </div>
+        }
+    </GridCol>
+    <GridCol Span="8">
+        <div class="bt">
+            @if (this.LastBlock.IsNotNull() && this.LastBlock.Index < this.CurrentIndex)
+            {
+                var stamp = (int?)(this.CurrentIndex - this.LastBlock.Index);
+                <Badge Count="@stamp" />
+            }
+            <Button OnClick="Previous">@this.WebLocalString("< 上一局","< Previous")</Button>
+            <Button OnClick="Current">@this.WebLocalString("当前","Current")</Button>
+            <Button OnClick="Next">@this.WebLocalString("下一局 >","Next >")</Button>
+            @if (LotteryResult.IsNullOrEmpty())
+            {
+                <Button Icon="plus" OnClick="OpenBet" Type="@ButtonType.Primary">@this.WebLocalString("下注","Bet")</Button>
+            }
+        </div>
+        <div class="bt">
+            <OX.Mix.Components.Chat BetAddress="@this.Room?.BetAddress" EthID="@this.EthID" />
+        </div>
+    </GridCol>
+</GridRow>
+<div>
+    @if (this.HaveEthID)
+    {
+        <Drawer Closable="true" Width="800" Visible="DrawerVisible" Title='@this.WebLocalString($"下注到{this.BetModel.BetIndex}局",$"Bet     on round {this.BetModel.BetIndex}")' OnClose="_=>CloseBet()">
+            <Template style="height:90%">
+                <Form Model="@this.BetModel"
+                  Style="margin-top: 8px;"
+                  OnFinish="Bet">
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("余额","Balance")" ShowFeedbackOnError="true">
+                                <Input ReadOnly=true @bind-Value="@this.BalanceState.AvailableBalance"></Input>
+                            </FormItem>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("下注金额","Bet Amount")" ShowFeedbackOnError="true">
+                                <Input ReadOnly=true @bind-Value="@context.Amount"></Input>
+                            </FormItem>
+                        </AntDesign.Col>
+
+                    </Row>
+
+
+
+                    @if (context.CheckDatas.IsNotNullAndEmpty())
+                    {
+                        <div>
+                            @foreach (var data in context.CheckDatas)
+                            {
+                                <a class="checktitle">@this.WebLocalString($"{data.N}位:",$"Position {data.N}:")</a>
+                                <CheckboxGroup Options="@data.Options" @bind-Value="@data.Result" OnChange=this.OnCheckChange />
+                                <br />
+                            }
+
+                        </div>
+                    }
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("特码","Special Code")">
+                                <Select Mode="default"
+                                    DataSource="@SpecialCode.All()"
+                                    @bind-Value="@context.SpecialCode"
+                                    DefaultActiveFirstOption=true
+                                    LabelName="@nameof(SpecialCode.Code)"
+                                    ValueName="@nameof(SpecialCode.Code)">
+                                </Select>
+                            </FormItem>
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="12">
+                            <FormItem Label="@this.WebLocalString("特位","Special Position")">
+                                <Select Mode="default"
+                                    DataSource="@SpecialPosition.All()"
+                                    @bind-Value="@context.SpecialPosition"
+                                    DefaultActiveFirstOption=true
+                                    LabelName="@nameof(SpecialPosition.Position)"
+                                    ValueName="@nameof(SpecialPosition.Position)">
+                                </Select>
+                            </FormItem>
+                        </AntDesign.Col>
+
+                    </Row>
+
+                    <Row Gutter="8">
+                        <AntDesign.Col Span="18">
+                        </AntDesign.Col>
+                        <AntDesign.Col Span="6">
+                            <Button Icon="plus" HtmlType="submit" Type="primary" Disabled=false>@this.WebLocalString("下注","Bet")</Button>
+                        </AntDesign.Col>
+                    </Row>
+                </Form>
+            </Template>
+        </Drawer>
+    }
+</div>
+
+<style>
+    .checktitle {
+        margin-right: 20px;
+    }
+
+    .site-page-header {
+        margin: 2px;
+        padding: 20px;
+    }
+
+    .bt {
+        margin: 3px;
+        padding: 1px;
+    }
+
+    .bettings {
+        width: 100%;
+    }
+
+    .grid {
+        margin: 0px;
+        padding: 0px;
+        min-height: 610px;
+        width: 100%;
+    }
+
+        .grid .card {
+            margin: 0;
+            padding:;
+            min-height: 610px;
+            width: 100%;
+        }
+
+    .tip {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .prize {
+        margin: 3px;
+        padding: 20px;
+        background: #00a0e9;
+    }
+</style>

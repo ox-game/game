@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Copyright>gt</Copyright>
+		<AssemblyTitle>OX</AssemblyTitle>
+		<Version>1.0.2</Version>
+		<Authors>gt</Authors>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AssemblyName>ox.casino.core</AssemblyName>
+		<PackageId>ox.casino.core</PackageId>
+		<PackageTags></PackageTags>
+		<PackageProjectUrl></PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl></RepositoryUrl>
+		<RootNamespace>OX</RootNamespace>
+		<Company>gt</Company>
+		<Description>ox.casino.core</Description>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Mnemonics\**" />
+		<Compile Remove="Persistence\**" />
+		<Compile Remove="Properties\**" />
+		<EmbeddedResource Remove="Mnemonics\**" />
+		<EmbeddedResource Remove="Persistence\**" />
+		<EmbeddedResource Remove="Properties\**" />
+		<None Remove="Mnemonics\**" />
+		<None Remove="Persistence\**" />
+		<None Remove="Properties\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Models\RiddlesRecord.cs" />
+	  <Compile Remove="Models\RoomRecord_V1.cs" />
+	  <Compile Remove="Models\RoomStateRecord_V1.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Akka" Version="1.5.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="ox">
+	    <HintPath>..\Lib\ox.dll</HintPath>
+	  </Reference>
+	  <Reference Include="ox.vm">
+	    <HintPath>..\Lib\ox.vm.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.notecase\bin\Debug\net6.0-windows\bapps\casino\&#xD;&#xA;copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.mix\bin\Debug\net6.0-windows\bapps\casino\&#xD;&#xA;copy $(TargetPath)  E:\Data\Source\AU-X\OX\OX-Wallets\ox.web\bin\Debug\net6.0-windows\bapps\casino\" />
+	</Target>
+
+</Project>

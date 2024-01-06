@@ -1,0 +1,26 @@
+﻿@page "/_pc/casino/bury/hitrecords"
+@inherits CasinoComponentBase
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@PageTitle />
+<div>
+    <Card Title=@PageTitle>
+        <Body>
+            @if (this.Records.IsNotNullAndEmpty())
+            {
+                foreach (var r in this.Records)
+                {
+                    string s = string.Empty;
+                    var output = r.Outputs.FirstOrDefault(m => m.ScriptHash.Equals(this.EthID.MapAddress));
+                    if (output.IsNotNull())
+                        s = $"{output.Value}";
+                    <Button Class="bt">@s</Button>
+                }
+            }
+        </Body>
+    </Card>
+</div>
+<style>
+    .bt {
+        margin: 2px;
+        padding: 2px;
+    }
+</style>

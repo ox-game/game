@@ -1,0 +1,44 @@
+﻿@page "/_pc/casino/feedback"
+@inherits CasinoComponentBase
+@using OX.Wallets
+@using OX.SmartContract
+<Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@PageTitle />
+<PageContainer Title=@PageTitle>
+    <ChildContent>
+        <Card>
+            <div>
+                @{
+                    var AssetState = Blockchain.Singleton.CurrentSnapshot.Assets.TryGet(casino.GamblerLuckBonusAsset);
+                    var TrustAddress = CasinoTrustPoolHelper.TrustPoolAddress;
+                    var oxc_balance = string.Empty;
+                    var csn_balance = string.Empty;
+                    var acts = Blockchain.Singleton.CurrentSnapshot.Accounts.GetAndChange(TrustAddress, () => null);
+                    if (acts.IsNotNull())
+                    {
+                        oxc_balance = acts.GetBalance(Blockchain.OXC).ToString();
+                        csn_balance = acts.GetBalance(casino.GamblerLuckBonusAsset).ToString();
+                    }
+                }
+                <Paragraph><Text Code>@this.WebLocalString("委托人公钥","Truster Public Key")</Text> <Text Copyable>@CasinoTrustPoolHelper.Truster.ToString()</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("委托人地址","Truster Address")</Text> <Text Copyable>@Contract.CreateSignatureRedeemScript(CasinoTrustPoolHelper.Truster).ToScriptHash().ToAddress()</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("受托人公钥","Trustee Public Key")</Text> <Text Copyable>@CasinoTrustPoolHelper.Trustee.ToString()</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("受托人地址","Trustee Address")</Text> <Text Copyable>@Contract.CreateSignatureRedeemScript(CasinoTrustPoolHelper.Trustee).ToScriptHash().ToAddress()</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("信托范围", "Trust Scope")</Text> <Text Copyable>@casino.GamblerLuckBonusAssetDexPool</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("信托地址", "Trust Address")</Text> <Text Copyable>@TrustAddress.ToAddress()</Text></Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString("OXC 余额", "OXC Balance")</Text>@oxc_balance</Paragraph>
+
+                <Paragraph><Text Code>@this.WebLocalString($"{AssetState.GetName()} 余额", $"{AssetState.GetName()} Balance")</Text>@csn_balance</Paragraph>
+
+
+            </div>
+
+
+        </Card>
+    </ChildContent>
+</PageContainer>
