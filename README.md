@@ -1,4 +1,4 @@
-# casino
+# game
 A completely decentralized, fair, and safe casino
 
 baseed OX-eco blockchain
