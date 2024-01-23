@@ -1,5 +1,5 @@
-# casino
-A completely decentralized, fair, and safe casino
+# game
+A completely decentralized, fair, and safe game
 
 baseed OX-eco blockchain
 https://github.com/ox-eco/oxchain
