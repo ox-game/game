@@ -218,7 +218,6 @@ namespace OX.UI.Casino
         {
             var ali = this.cbAccounts.SelectedItem as TrustAccountDescription;
             if (ali.IsNull()) return;
-            if (Blockchain.Singleton.HeaderHeight <= ali.AssetTrustContract.LastTransferIndex + 10) return;
             if (this.cb_Height.SelectedItem == null)
                 return;
             var bizPlugin = Bapp.GetBappProvider<CasinoBapp, ICasinoProvider>();
@@ -266,13 +265,14 @@ namespace OX.UI.Casino
                             var account = LockAssetHelper.CreateAccount(openWallet, from.AssetTrustContract.GetContract(), trustee.GetKey());//lock asset account have a some private key with master account
                             if (account != null)
                             {
-                                List<UTXO> utxos = new List<UTXO>();
-                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.AssetId.Equals(Room.Request.AssetId) && m.Value.ScriptHash.Equals(from.TrustAddress)))
+                                List<AssetTrustUTXO> utxos = new List<AssetTrustUTXO>();
+                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => !m.Value.WaitSpent && m.Value.OutPut.AssetId.Equals(Room.Request.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                 {
-                                    utxos.Add(new UTXO
+                                    utxos.Add(new AssetTrustUTXO
                                     {
-                                        Address = r.Value.ScriptHash,
-                                        Value = r.Value.Value.GetInternalValue(),
+                                         AssetTrustOutput=r.Value,
+                                        Address = r.Value.OutPut.ScriptHash,
+                                        Value = r.Value.OutPut.Value.GetInternalValue(),
                                         TxId = r.Key.TxId,
                                         N = r.Key.N
                                     });
@@ -283,9 +283,10 @@ namespace OX.UI.Casino
                                 bool ok = false;
                                 int m = 0;
                                 var betFee = Room.GetPrivateRoomBetFee();
+                                List<AssetTrustUTXO> waitSpents = new List<AssetTrustUTXO>();
                                 if (Room.Request.AssetId == Blockchain.OXC)
                                 {
-                                    if (utxos.SortSearch(amt.GetInternalValue() + Fixed8.D + betFee.GetInternalValue(), excludedUtxoKeys, out UTXO[] selectedUtxos, out long remainder))
+                                    if (utxos.SortSearch(amt.GetInternalValue() + Fixed8.D + betFee.GetInternalValue(), excludedUtxoKeys, out AssetTrustUTXO[] selectedUtxos, out long remainder))
                                     {
                                         outputs.Add(new TransactionOutput { AssetId = Room.Request.AssetId, Value = amt, ScriptHash = Room.BetAddress });
                                         if (betFee > Fixed8.Zero)
@@ -306,12 +307,13 @@ namespace OX.UI.Casino
                                         {
                                             inputs.Add(new CoinReference { PrevHash = utxo.TxId, PrevIndex = utxo.N });
                                         }
+                                        waitSpents.AddRange(selectedUtxos);
                                         ok = true;
                                     }
                                 }
                                 else
                                 {
-                                    if (utxos.SortSearch(amt.GetInternalValue(), excludedUtxoKeys, out UTXO[] selectedUtxos, out long remainder))
+                                    if (utxos.SortSearch(amt.GetInternalValue(), excludedUtxoKeys, out AssetTrustUTXO[] selectedUtxos, out long remainder))
                                     {
                                         outputs.Add(new TransactionOutput { AssetId = Room.Request.AssetId, Value = amt, ScriptHash = Room.BetAddress });
                                         if (remainder > 0)
@@ -323,20 +325,22 @@ namespace OX.UI.Casino
                                         {
                                             inputs.Add(new CoinReference { PrevHash = utxo.TxId, PrevIndex = utxo.N });
                                         }
+                                        waitSpents.AddRange(selectedUtxos);
                                         m++;
                                     }
-                                    List<UTXO> feeutxos = new List<UTXO>();
-                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.AssetId.Equals(Blockchain.OXC) && m.Value.ScriptHash.Equals(from.TrustAddress)))
+                                    List<AssetTrustUTXO> feeutxos = new List<AssetTrustUTXO>();
+                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => !m.Value.WaitSpent && m.Value.OutPut.AssetId.Equals(Blockchain.OXC) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                     {
-                                        feeutxos.Add(new UTXO
+                                        feeutxos.Add(new AssetTrustUTXO
                                         {
-                                            Address = r.Value.ScriptHash,
-                                            Value = r.Value.Value.GetInternalValue(),
+                                             AssetTrustOutput=r.Value,
+                                            Address = r.Value.OutPut.ScriptHash,
+                                            Value = r.Value.OutPut.Value.GetInternalValue(),
                                             TxId = r.Key.TxId,
                                             N = r.Key.N
                                         });
                                     }
-                                    if (feeutxos.SortSearch(Fixed8.D + betFee.GetInternalValue(), excludedUtxoKeys, out UTXO[] selectedUtxosFee, out long remainderFee))
+                                    if (feeutxos.SortSearch(Fixed8.D + betFee.GetInternalValue(), excludedUtxoKeys, out AssetTrustUTXO[] selectedUtxosFee, out long remainderFee))
                                     {
                                         if (betFee > Fixed8.Zero)
                                         {
@@ -355,6 +359,7 @@ namespace OX.UI.Casino
                                         {
                                             inputs.Add(new CoinReference { PrevHash = utxo.TxId, PrevIndex = utxo.N });
                                         }
+                                        waitSpents.AddRange(selectedUtxosFee);
                                         m++;
                                     }
                                 }
@@ -377,7 +382,10 @@ namespace OX.UI.Casino
                                     {
                                         this.Operater.Wallet.ApplyTransaction(tx);
                                         this.Operater.Relay(tx);
-                                        from.AssetTrustContract.LastTransferIndex = Blockchain.Singleton.HeaderHeight;
+                                        foreach (var u in waitSpents)
+                                        {
+                                            u.AssetTrustOutput.WaitSpent = true;
+                                        }
                                         if (this.Operater != default)
                                         {
                                             string msg = UIHelper.LocalString($"广播信托下注交易成功  {tx.Hash}", $"Relay  trust bet transaction completed  {tx.Hash}");

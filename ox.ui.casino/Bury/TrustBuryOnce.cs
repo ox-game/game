@@ -137,7 +137,6 @@ namespace OX.UI.Bury
 
             var ali = this.cbAccounts.SelectedItem as TrustAccountDescription;
             if (ali.IsNull()) return;
-            if (Blockchain.Singleton.HeaderHeight <= ali.AssetTrustContract.LastTransferIndex + 10) return;
             if (!byte.TryParse(this.tb_PlainCode.Text, out byte plainCode))
                 return;
             if (!byte.TryParse(this.tb_CipherCode.Text, out byte cipherCode))
@@ -166,19 +165,20 @@ namespace OX.UI.Bury
                     var account = LockAssetHelper.CreateAccount(this.Operater.Wallet as OpenWallet, from.AssetTrustContract.GetContract(), trustee.GetKey());//lock asset account have a some private key with master account
                     if (account != null)
                     {
-                        List<UTXO> utxos = new List<UTXO>();
-                        foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.AssetId.Equals(this.AssetId) && m.Value.ScriptHash.Equals(from.TrustAddress)))
+                        List<AssetTrustUTXO> utxos = new List<AssetTrustUTXO>();
+                        foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => !m.Value.WaitSpent && m.Value.OutPut.AssetId.Equals(this.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                         {
-                            utxos.Add(new UTXO
+                            utxos.Add(new AssetTrustUTXO
                             {
-                                Address = r.Value.ScriptHash,
-                                Value = r.Value.Value.GetInternalValue(),
+                                AssetTrustOutput = r.Value,
+                                Address = r.Value.OutPut.ScriptHash,
+                                Value = r.Value.OutPut.Value.GetInternalValue(),
                                 TxId = r.Key.TxId,
                                 N = r.Key.N
                             });
                         }
                         List<string> excludedUtxoKeys = new List<string>();
-                        if (utxos.SortSearch(amt.GetInternalValue() +2* Fixed8.D, excludedUtxoKeys, out UTXO[] selectedUtxos, out long remainder))
+                        if (utxos.SortSearch(amt.GetInternalValue() + 2 * Fixed8.D, excludedUtxoKeys, out AssetTrustUTXO[] selectedUtxos, out long remainder))
                         {
 
                             PrivateBuryRequest PrivateBuryRequest = new PrivateBuryRequest { Rand = (uint)new Random().Next(0, int.MaxValue), CipherBuryPoint = cipherCode };
@@ -223,7 +223,10 @@ namespace OX.UI.Bury
                             {
                                 this.Operater.Wallet.ApplyTransaction(tx);
                                 this.Operater.Relay(tx);
-                                from.AssetTrustContract.LastTransferIndex = Blockchain.Singleton.HeaderHeight;
+                                foreach (var u in selectedUtxos)
+                                {
+                                    u.AssetTrustOutput.WaitSpent = true;
+                                }
                                 if (this.Operater != default)
                                 {
                                     string msg = UIHelper.LocalString($"广播信托埋雷交易成功  {tx.Hash}", $"Relay  trust bury transaction completed  {tx.Hash}");
