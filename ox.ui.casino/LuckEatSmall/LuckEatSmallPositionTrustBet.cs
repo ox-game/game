@@ -266,7 +266,7 @@ namespace OX.UI.Casino
                             if (account != null)
                             {
                                 List<AssetTrustUTXO> utxos = new List<AssetTrustUTXO>();
-                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => !m.Value.WaitSpent && m.Value.OutPut.AssetId.Equals(Room.Request.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
+                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpendIndex==0 && m.Value.OutPut.AssetId.Equals(Room.Request.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                 {
                                     utxos.Add(new AssetTrustUTXO
                                     {
@@ -329,7 +329,7 @@ namespace OX.UI.Casino
                                         m++;
                                     }
                                     List<AssetTrustUTXO> feeutxos = new List<AssetTrustUTXO>();
-                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => !m.Value.WaitSpent && m.Value.OutPut.AssetId.Equals(Blockchain.OXC) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
+                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpendIndex==0 && m.Value.OutPut.AssetId.Equals(Blockchain.OXC) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                     {
                                         feeutxos.Add(new AssetTrustUTXO
                                         {
@@ -384,7 +384,7 @@ namespace OX.UI.Casino
                                         this.Operater.Relay(tx);
                                         foreach (var u in waitSpents)
                                         {
-                                            u.AssetTrustOutput.WaitSpent = true;
+                                            u.AssetTrustOutput.SpendIndex = Blockchain.Singleton.HeaderHeight;
                                         }
                                         if (this.Operater != default)
                                         {
