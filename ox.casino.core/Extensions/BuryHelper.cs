@@ -18,18 +18,22 @@ namespace OX.Casino
     {
         public static UInt160 GetBuryAddress()
         {
-            var tx = new SideTransaction()
+            return GetBuryMetaSideTransaction().GetContract().ScriptHash;
+        }
+        public static SideTransaction GetBuryMetaSideTransaction()
+        {
+            return new SideTransaction()
             {
                 Recipient = casino.CasinoSettleAccountPubKey,
                 SideType = SideType.PublicKey,
                 Data = casino.CasinoMasterAccountPubKey.ToArray(),
                 Flag = 0,
-                 AuthContract = Blockchain.SideAssetContractScriptHash,
+                AuthContract = Blockchain.SideAssetContractScriptHash,
                 Attributes = new TransactionAttribute[0],
                 Outputs = new TransactionOutput[0],
                 Inputs = new CoinReference[0]
             };
-            return tx.GetContract().ScriptHash;
+
         }
     }
 }

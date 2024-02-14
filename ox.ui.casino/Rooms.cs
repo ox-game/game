@@ -343,7 +343,7 @@ namespace OX.UI.Casino
                         {
                             var oxsBalance = getBalance(node.Item1, Blockchain.OXS);
                             var oxcBalance = getBalance(node.Item1, Blockchain.OXC);
-                            var msg = UIHelper.LocalString($"OXS余额:{oxsBalance}     OXC余额:{oxcBalance}", $"OXS balance:{oxsBalance}      OXC balance:{oxcBalance}");
+                            var msg = UIHelper.LocalString($"OXS主余额:{oxsBalance}     OXC主余额:{oxcBalance}", $"OXS balance:{oxsBalance}      OXC balance:{oxcBalance}");
                             node.Item2.Text = msg;
                         });
                     }
@@ -461,35 +461,7 @@ namespace OX.UI.Casino
                         subNode.NodeType = 2;
                         subNode.Tag = r;
                         node.Nodes.Add(subNode);
-                        //if (r.RoomPledgeAccountReply.IsNotNull())
-                        //{
-                        //    var pledgeAdr = Contract.CreateSignatureRedeemScript(r.RoomPledgeAccountReply.Address).ToScriptHash();
-                        //    subNode = new DarkTreeNode(UIHelper.LocalString($"OXS众筹质押地址:{pledgeAdr.ToAddress()}", $"OXS crowdfunding pledge address:{pledgeAdr.ToAddress()}"));
-                        //    subNode.NodeType = 2;
-                        //    subNode.Tag = r;
-                        //    node.Nodes.Add(subNode);
-                        //    subNode = new DarkTreeNode(UIHelper.LocalString($"众筹合伙人合计分红:{r.RoomPledgeAccountReply.DividendRatio}%", $"Total dividends of crowdfunding partners:{r.RoomPledgeAccountReply.DividendRatio}%"));
-                        //    subNode.NodeType = 2;
-                        //    subNode.Tag = r;
-                        //    node.Nodes.Add(subNode);
-                        //    var enumItem = new EnumItem<DividentSlope>(r.RoomPledgeAccountReply.DividentSlope);
-                        //    subNode = new DarkTreeNode(UIHelper.LocalString($"{EnumHelper.EnumName<DividentSlope>()}:{enumItem.ToString()}", $"{EnumHelper.EnumEngName<DividentSlope>()}:{enumItem.ToString()}"));
-                        //    subNode.NodeType = 2;
-                        //    subNode.Tag = r;
-                        //    node.Nodes.Add(subNode);
-
-                        //    subNode = new DarkTreeNode(UIHelper.LocalString($"质押清算的区块高度:{r.RoomPledgeAccountReply.SettleIndex}", $"Block height of pledge liquidation:{r.RoomPledgeAccountReply.SettleIndex}"));
-                        //    subNode.NodeType = 2;
-                        //    subNode.Tag = r;
-                        //    node.Nodes.Add(subNode);
-                        //    var oxsBalance = getBalance(pledgeAdr, Blockchain.OXS);
-                        //    var oxcBalance = getBalance(pledgeAdr, Blockchain.OXC);
-                        //    subNode = new DarkTreeNode(UIHelper.LocalString($"OXS余额:{oxsBalance}     OXC余额:{oxcBalance}", $"OXS balance:{oxsBalance}      OXC balance:{oxcBalance}"));
-                        //    subNode.NodeType = 2;
-                        //    subNode.Tag = r;
-                        //    node.Nodes.Add(subNode);
-                        //    nodes.Add(new Tuple<UInt160, DarkTreeNode>(pledgeAdr, subNode));
-                        //}
+                         
                         this.treeRooms.Nodes.Add(node);
                     });
                 }

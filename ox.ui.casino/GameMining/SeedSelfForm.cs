@@ -48,7 +48,7 @@ namespace OX.UI.GameMining
             this.lb_amount.Text = UIHelper.LocalString("锁仓金额:", "Lock Amount:");
             this.lb_blockexpire.Text = UIHelper.LocalString("锁仓区块高度:", "Lock Block Index:");
             this.lb_assetId.Text = UIHelper.LocalString("资产Id:", "Asset Id:");
-            this.lb_balance.Text = UIHelper.LocalString("资产余额:", "Asset Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("主余额:", "Master Balance:");
             this.lb_position.Text = UIHelper.LocalString($"{betIndex}种矿{position}号位", $"Seed  position {position} on {betIndex}");
         }
         #region IBlockChainTrigger

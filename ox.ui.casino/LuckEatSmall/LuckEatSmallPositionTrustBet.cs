@@ -100,7 +100,7 @@ namespace OX.UI.Casino
             this.Text = UIHelper.LocalString($"大吃小信托下注  {this.Position}号位         单注费 {fee} OXC", $"EatSmall Trust Bet in Position {this.Position}          bet fee {fee} OXC");
             this.lb_roomId.Text = UIHelper.LocalString($"房间号:    {this.Room.RoomId}", $"Room Id:    {this.Room.RoomId}");
             this.lb_Index.Text = UIHelper.LocalString($"下注高度:", $"Bet Height:");
-            this.lb_balance.Text = UIHelper.LocalString("账户余额:", "Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("信托余额:", "Trust Balance:");
             this.lb_betamt.Text = UIHelper.LocalString("下注额:", "Bet Amount:");
             this.lb_from.Text = UIHelper.LocalString("信托账户:", "Trust Account:");
             this.bt_bet.Text = UIHelper.LocalString($"下注{this.Position}号位", $"Bet in position {this.Position}");
@@ -266,7 +266,7 @@ namespace OX.UI.Casino
                             if (account != null)
                             {
                                 List<AssetTrustUTXO> utxos = new List<AssetTrustUTXO>();
-                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpendIndex==0 && m.Value.OutPut.AssetId.Equals(Room.Request.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
+                                foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpentIndex ==0 && m.Value.OutPut.AssetId.Equals(Room.Request.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                 {
                                     utxos.Add(new AssetTrustUTXO
                                     {
@@ -329,7 +329,7 @@ namespace OX.UI.Casino
                                         m++;
                                     }
                                     List<AssetTrustUTXO> feeutxos = new List<AssetTrustUTXO>();
-                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpendIndex==0 && m.Value.OutPut.AssetId.Equals(Blockchain.OXC) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
+                                    foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpentIndex ==0 && m.Value.OutPut.AssetId.Equals(Blockchain.OXC) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                                     {
                                         feeutxos.Add(new AssetTrustUTXO
                                         {
@@ -384,7 +384,7 @@ namespace OX.UI.Casino
                                         this.Operater.Relay(tx);
                                         foreach (var u in waitSpents)
                                         {
-                                            u.AssetTrustOutput.SpendIndex = Blockchain.Singleton.HeaderHeight;
+                                            u.AssetTrustOutput.SpentIndex = Blockchain.Singleton.HeaderHeight;
                                         }
                                         if (this.Operater != default)
                                         {

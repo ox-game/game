@@ -40,6 +40,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Akka" Version="1.5.3" />
+    <PackageReference Include="Nethereum.Signer" Version="4.14.0" />
 	</ItemGroup>
 
 	<ItemGroup>

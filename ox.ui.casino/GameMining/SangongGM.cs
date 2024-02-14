@@ -13,6 +13,7 @@ using System.Drawing;
 using OX.UI.Casino;
 using OX.Cryptography.ECC;
 using OX.IO;
+using NBitcoin;
 
 namespace OX.UI.GameMining
 {
@@ -135,12 +136,12 @@ namespace OX.UI.GameMining
                     using (Font bigFont = new Font(SystemFonts.DefaultFont.FontFamily, 14, FontStyle.Regular))
                     {
                         g.DrawString(UIHelper.LocalString(this.GameMiningKind.StringValue(), this.GameMiningKind.EngStringValue()), bigFont, b, new PointF(5, 15));
-                        g.DrawString(UIHelper.LocalString($"种子锁定:{this.CurrentTask.BetLockExpiration}", $"Seed Lock:{this.CurrentTask.BetLockExpiration}"), bigFont, b, new PointF(5, 65));
+                        g.DrawString(UIHelper.LocalString($"种子锁仓:{this.CurrentTask.BetLockExpiration}", $"Seed Lock:{this.CurrentTask.BetLockExpiration}"), bigFont, b, new PointF(5, 65));
                         g.DrawString(UIHelper.LocalString($"空投额:{this.CurrentTask.AirDropAmount}", $"Airdrop Amount:{this.CurrentTask.AirDropAmount}"), bigFont, b, new PointF(5, 115));
                         var range = this.CurrentTask.AirdropLockRange;
                         if (range == 0)
                             range = 1000;
-                        g.DrawString(UIHelper.LocalString($"空投锁定区块数:{range}", $"Airdrop Lock Blocks:{range}"), bigFont, b, new PointF(5, 165));
+                        g.DrawString(UIHelper.LocalString($"空投锁仓区块数:{range}", $"Airdrop Lock Blocks:{range}"), bigFont, b, new PointF(5, 165));
                     }
                 }
             }

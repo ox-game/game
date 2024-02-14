@@ -88,7 +88,7 @@ namespace OX.UI.Bury
             this.Text = UIHelper.LocalString($"信托埋雷", $"Trust bet in bury");
             this.lb_plainCode.Text = UIHelper.LocalString($"明码:", $"Plain Code:");
             this.lb_cipherCode.Text = UIHelper.LocalString($"暗码:", $"Secret Code:");
-            this.lb_balance.Text = UIHelper.LocalString("账户余额:", "Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("信托余额:", "Trust Balance:");
             this.lb_betamt.Text = UIHelper.LocalString("埋雷金额:", "Bury Amount:");
             this.lb_from.Text = UIHelper.LocalString("信托账户:", "Trust Account:");
             this.bt_bet.Text = UIHelper.LocalString($"马上埋雷", $"Do Bury");
@@ -166,7 +166,7 @@ namespace OX.UI.Bury
                     if (account != null)
                     {
                         List<AssetTrustUTXO> utxos = new List<AssetTrustUTXO>();
-                        foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpendIndex==0 && m.Value.OutPut.AssetId.Equals(this.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
+                        foreach (var r in openWallet.GetAssetTrustUTXO().Where(m => m.Value.SpentIndex==0 && m.Value.OutPut.AssetId.Equals(this.AssetId) && m.Value.OutPut.ScriptHash.Equals(from.TrustAddress)))
                         {
                             utxos.Add(new AssetTrustUTXO
                             {
@@ -225,7 +225,7 @@ namespace OX.UI.Bury
                                 this.Operater.Relay(tx);
                                 foreach (var u in selectedUtxos)
                                 {
-                                    u.AssetTrustOutput.SpendIndex = Blockchain.Singleton.HeaderHeight;
+                                    u.AssetTrustOutput.SpentIndex = Blockchain.Singleton.HeaderHeight;
                                 }
                                 if (this.Operater != default)
                                 {

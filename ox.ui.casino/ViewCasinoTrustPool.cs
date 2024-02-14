@@ -39,8 +39,8 @@ namespace OX.UI.Casino
             var AssetState = Blockchain.Singleton.CurrentSnapshot.Assets.TryGet(casino.GamblerLuckBonusAsset);
             this.lb_truster.Text = UIHelper.LocalString("委托人:", "Truster:");
             this.lb_trustee.Text = UIHelper.LocalString("受托人:", "Trustee:");
-            this.lb_balance_OXC.Text = UIHelper.LocalString("OXC 余额:", "OXC Balance:");
-            this.lb_balance_Bit.Text = UIHelper.LocalString($"{AssetState.GetName()} 余额:", $"{AssetState.GetName()} Balance:");
+            this.lb_balance_OXC.Text = UIHelper.LocalString("OXC 主余额:", "OXC Master Balance:");
+            this.lb_balance_Bit.Text = UIHelper.LocalString($"{AssetState.GetName()} 主余额:", $"{AssetState.GetName()} Master Balance:");
             this.lb_scope.Text = UIHelper.LocalString("信托范围:", "Trust Scope:");
             this.bt_query.Text = UIHelper.LocalString("查询余额", "Query Balance");
             this.lb_trustaddr.Text = UIHelper.LocalString("信托地址:", "Trust Address:");

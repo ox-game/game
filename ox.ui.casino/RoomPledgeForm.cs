@@ -47,7 +47,7 @@ namespace OX.UI.Casino
             this.lb_amount.Text = UIHelper.LocalString("锁仓金额:", "Lock Amount:");
             this.lb_blockexpire.Text = UIHelper.LocalString("锁仓区块数:", "Lock Blocks:");
             this.lb_betAddress.Text = UIHelper.LocalString("下注地址:", "Bet Address:");
-            this.lb_balance.Text = UIHelper.LocalString("OXS 余额:", "Asset Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("OXS 主余额:", "OXS Master Balance:");
         }
         #region IBlockChainTrigger
         public void OnBappEvent(BappEvent be)

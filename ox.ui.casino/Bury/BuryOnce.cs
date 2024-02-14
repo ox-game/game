@@ -48,7 +48,7 @@ namespace OX.UI.Bury
             this.Text = UIHelper.LocalString("埋雷", "Bury");
             this.lb_plainCode.Text = UIHelper.LocalString($"明码:", $"Plain Code:");
             this.lb_cipherCode.Text = UIHelper.LocalString($"暗码:", $"Secret Code:");
-            this.lb_balance.Text = UIHelper.LocalString("账户余额:", "Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("主余额:", "Master Balance:");
             this.lb_betamt.Text = UIHelper.LocalString("埋雷金额:", "Bury Amount:");
             this.lb_from.Text = UIHelper.LocalString("埋雷账户:", "Bury Account:");
             this.bt_bet.Text = UIHelper.LocalString($"马上埋雷", $"Do Bury");

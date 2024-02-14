@@ -59,7 +59,7 @@ namespace OX.UI.Casino
             this.Text = UIHelper.LocalString($"团杀下注     单注费 {fee} OXC", $"TeamKill Bet      bet fee {fee} OXC");
             this.lb_roomId.Text = UIHelper.LocalString($"房间号:    {this.Room.RoomId}", $"Room Id:    {this.Room.RoomId}");
             this.lb_Index.Text = UIHelper.LocalString($"下注高度:", $"Bet Height:");
-            this.lb_balance.Text = UIHelper.LocalString("账户余额:", "Balance:");
+            this.lb_balance.Text = UIHelper.LocalString("主余额:", "Master Balance:");
             this.lb_betamt.Text = UIHelper.LocalString("下注额:", "Bet Amount:");
             this.lb_from.Text = UIHelper.LocalString("下注账户:", "Bet Account:");
             this.bt_bet.Text = UIHelper.LocalString("跟团下注", "Follow Team Bet");

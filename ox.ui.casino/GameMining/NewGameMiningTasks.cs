@@ -41,7 +41,7 @@ namespace OX.UI.GameMining
             this.rb_eatsmall.Text = UIHelper.LocalString("原位", "Fixed");
             this.rb_looting.Text = UIHelper.LocalString("本位", "Floating");
             this.lb_betindex.Text = UIHelper.LocalString("下注高度:", "Bet Height:");
-            this.lb_betlockexpration.Text = UIHelper.LocalString("下注锁定到期:", "Bet Lock Expire:");
+            this.lb_betlockexpration.Text = UIHelper.LocalString("下注锁仓到期:", "Bet Lock Expire:");
             this.lb_bonusLockRange.Text = UIHelper.LocalString("空投锁期:", "Airdrop Lock:");
             this.lb_bonusAmount.Text = UIHelper.LocalString("空投额:", "Airdrop Amount:");
         }
