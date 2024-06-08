@@ -335,6 +335,10 @@ namespace OX.UI.GameMining
         {
             this.GoRecent();
         }
+        public virtual void OnFlashMessage(FlashMessage flashMessage)
+        {
+
+        }
         public virtual void OnRebuild() { }
         #endregion
 

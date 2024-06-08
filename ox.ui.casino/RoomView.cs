@@ -377,7 +377,10 @@ namespace OX.UI.Casino
         public virtual void OnCrossBappMessage(CrossBappMessage message)
         {
         }
+        public void OnFlashMessage(FlashMessage flashMessage)
+        {
 
+        }
 
         public virtual void HeartBeat(HeartBeatContext context)
         {

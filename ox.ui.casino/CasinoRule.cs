@@ -30,24 +30,14 @@ namespace OX.UI.Casino
                 AddSetting(settings, CasinoSettingTypes.PublicRoomPledgePeriod, UIHelper.LocalString("公众房间OXS入伙锁仓周期", "Public Room Partner Lock OXS Period"), "blocks");
                 AddSetting(settings, CasinoSettingTypes.PrivateRoomPledgePeriod, UIHelper.LocalString("私有房间OXS入伙锁仓周期", "Private Room Partner Lock OXS Period"), "blocks");
                 AddSetting(settings, CasinoSettingTypes.RoomOXSMinLock, UIHelper.LocalString("房间OXS入伙最低单笔锁仓量", "Room Partner Min Single Lock OXS Volume"), "OXS");
-                //AddSetting(settings, CasinoSettingTypes.CasinoWithdrawMultiple, UIHelper.LocalString("主动提现费倍率", "Withdraw Fee Multiple"), "");
                 AddSetting(settings, CasinoSettingTypes.UnitFee, UIHelper.LocalString("每10注系统佣金", "System Commission Per 10 Bets"), "");
                 AddSetting(settings, CasinoSettingTypes.EatSmallMinBet, UIHelper.LocalString("大吃小最低投注额", "Eat Small Min Bet"), "");
-                //AddSetting(settings, CasinoSettingTypes.LuckEatSmallMinBet, UIHelper.LocalString("幸运大吃小最低投注额", "Luck Eat Small Min Bet"), "OXC");
-                //AddSetting(settings, CasinoSettingTypes.LootingMinBet, UIHelper.LocalString("夺宝最低投注额", "Looting Min Bet"), "OXC");
                 AddSetting(settings, CasinoSettingTypes.LottoMinBet, UIHelper.LocalString("乐透最低投注额", "Lotto Min Bet"), "");
-                //AddSetting(settings, CasinoSettingTypes.Luck10XMinBet, UIHelper.LocalString("幸运翻翻翻最低投注额", "Luck10X Min Bet"), "OXC");
                 AddSetting(settings, CasinoSettingTypes.MarkSixMinBet, UIHelper.LocalString("六合最低投注额", "MarkSix Min Bet"), "");
                 AddSetting(settings, CasinoSettingTypes.TeamKillMinBet, UIHelper.LocalString("团杀最低投注额", "TeamKill Min Bet"), "");
-                //AddSetting(settings, CasinoSettingTypes.LuckTeamKillMinBet, UIHelper.LocalString("幸运团杀最低投注额", "LuckTeamKill Min Bet"), "OXC");
                 AddSetting(settings, CasinoSettingTypes.BuryMinBet, UIHelper.LocalString("埋雷最低投注额", "Bury Min Bet"), "");
                 AddSetting(settings, CasinoSettingTypes.RoomFeeMinBet, UIHelper.LocalString("计提房费最低投注门槛", "Min Bet of Accrual Room Fee"), "");
                 AddSetting(settings, CasinoSettingTypes.PoolBonusMinBet, UIHelper.LocalString("计提奖池最低投注门槛", "Min Bet of Accrual Pool Bonus"), "");
-                //AddSetting(settings, CasinoSettingTypes.WithdrawAccount, UIHelper.LocalString("娱乐提现账户", "Withdraw Account"), "");
-                //AddSetting(settings, CasinoSettingTypes.OpenRoomAccount, UIHelper.LocalString("娱乐开房账户", "Create Room Account"), "");
-
-                //AddSetting(settings, CasinoSettingTypes.DibsAccount, UIHelper.LocalString("网络费账户", "Network Fee Account"), "");
-                //AddSetting(settings, CasinoSettingTypes.AgentFeeMultiple, UIHelper.LocalString("网络代理费倍率", "Network Agent Fee Multiple"), "");
 
                 AddSetting(settings, CasinoSettingTypes.CasinoBonusToken, UIHelper.LocalString("投注奖励资产Id", "Bet Bonus Asset Id"), "");
             }
@@ -73,6 +63,10 @@ namespace OX.UI.Casino
         {
         }
         public void HeartBeat(HeartBeatContext context)
+        {
+
+        }
+        public void OnFlashMessage(FlashMessage flashMessage)
         {
 
         }

@@ -15,6 +15,7 @@ using OX.Casino;
 using OX.Ledger;
 using OX.UI.Bury;
 
+
 namespace OX.UI.Casino
 {
     public class CasinoModule : Module
@@ -53,7 +54,7 @@ namespace OX.UI.Casino
             buryMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             buryMenu.Name = "buryMenu";
-            buryMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K)));
+            buryMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.K)));
             buryMenu.Size = new System.Drawing.Size(170, 22);
             buryMenu.Text = UIHelper.LocalString("爆雷", "Bury");
             buryMenu.Click += BuryMenu_Click;
@@ -65,7 +66,7 @@ namespace OX.UI.Casino
             followRoomsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             followRoomsMenu.Name = "followRoomsMenu";
-            followRoomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            followRoomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             followRoomsMenu.Size = new System.Drawing.Size(170, 22);
             followRoomsMenu.Text = UIHelper.LocalString("我关注的娱乐房间", "My follow Casino Rooms");
             followRoomsMenu.Click += FollowRoomsMenu_Click;
@@ -75,7 +76,7 @@ namespace OX.UI.Casino
             riddlesHashMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             riddlesHashMenu.Name = "riddlesHashMenu";
-            riddlesHashMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            riddlesHashMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.G)));
             riddlesHashMenu.Size = new System.Drawing.Size(170, 22);
             riddlesHashMenu.Text = UIHelper.LocalString("谜底哈希", "Riddles Hash");
             riddlesHashMenu.Click += RiddlesHashMenu_Click;
@@ -85,7 +86,7 @@ namespace OX.UI.Casino
             riddlesMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             riddlesMenu.Name = "riddlesMenu";
-            riddlesMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            riddlesMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D)));
             riddlesMenu.Size = new System.Drawing.Size(170, 22);
             riddlesMenu.Text = UIHelper.LocalString("谜底", "Riddles");
             riddlesMenu.Click += RiddlesMenu_Click;
@@ -96,7 +97,7 @@ namespace OX.UI.Casino
             openRoomListMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //openRoomListMenu.Image = global::Example.Icons.NewFile_6276;
             openRoomListMenu.Name = "openRoomListMenu";
-            openRoomListMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            openRoomListMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.O)));
             openRoomListMenu.Size = new System.Drawing.Size(170, 22);
             openRoomListMenu.Text = UIHelper.LocalString("开放房间列表", "Opened Room List");
             openRoomListMenu.Click += OpenRoomListMenu_Click;
@@ -106,7 +107,7 @@ namespace OX.UI.Casino
             playerQueryMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //playerQueryMenu.Image = global::Example.Icons.NewFile_6276;
             playerQueryMenu.Name = "playerQueryMenu";
-            playerQueryMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            playerQueryMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Q)));
             playerQueryMenu.Size = new System.Drawing.Size(170, 22);
             playerQueryMenu.Text = UIHelper.LocalString("玩家查询", "Gambler Query");
             playerQueryMenu.Click += PlayerQueryMenu_Click;
@@ -116,7 +117,7 @@ namespace OX.UI.Casino
             commonAuthorizeMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //commonAuthorizeMenu.Image = global::Example.Icons.NewFile_6276;
             commonAuthorizeMenu.Name = "commonAuthorizeMenu";
-            commonAuthorizeMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            commonAuthorizeMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             commonAuthorizeMenu.Size = new System.Drawing.Size(170, 22);
             commonAuthorizeMenu.Text = UIHelper.LocalString("通用授权", "Common Authorize");
             commonAuthorizeMenu.Click += CommonAuthorizeMenu_Click;
@@ -127,7 +128,7 @@ namespace OX.UI.Casino
             ownerMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //commonAuthorizeMenu.Image = global::Example.Icons.NewFile_6276;
             ownerMenu.Name = "ownerMenu";
-            ownerMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            ownerMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
             ownerMenu.Size = new System.Drawing.Size(170, 22);
             ownerMenu.Text = UIHelper.LocalString("我是房主", "As Room Owner");
             //创建娱乐房间
@@ -136,7 +137,7 @@ namespace OX.UI.Casino
             newRoomMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             newRoomMenu.Name = "newRoomMenu";
-            newRoomMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            newRoomMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.N)));
             newRoomMenu.Size = new System.Drawing.Size(170, 22);
             newRoomMenu.Text = UIHelper.LocalString("创建娱乐房间", "New Casino Room");
             newRoomMenu.Click += NewRoomMenu_Click;
@@ -147,7 +148,7 @@ namespace OX.UI.Casino
             roomsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             roomsMenu.Name = "roomsMenu";
-            roomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            roomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.L)));
             roomsMenu.Size = new System.Drawing.Size(170, 22);
             roomsMenu.Text = UIHelper.LocalString("我拥有的娱乐房间", "My Own Casino Rooms");
             roomsMenu.Click += RoomsMenu_Click;
@@ -159,7 +160,7 @@ namespace OX.UI.Casino
             ownerPartnerMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //commonAuthorizeMenu.Image = global::Example.Icons.NewFile_6276;
             ownerPartnerMenu.Name = "ownerPartnerMenu";
-            ownerPartnerMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            ownerPartnerMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.P)));
             ownerPartnerMenu.Size = new System.Drawing.Size(170, 22);
             ownerPartnerMenu.Text = UIHelper.LocalString("我是房间合伙人", "As Room Partner");
 
@@ -169,7 +170,7 @@ namespace OX.UI.Casino
             myGuaranteeRecordMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //myGuaranteeRecordMenu.Image = global::Example.Icons.NewFile_6276;
             myGuaranteeRecordMenu.Name = "myGuaranteeRecordMenu";
-            myGuaranteeRecordMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            myGuaranteeRecordMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.G)));
             myGuaranteeRecordMenu.Size = new System.Drawing.Size(170, 22);
             myGuaranteeRecordMenu.Text = UIHelper.LocalString("我的锁仓入伙记录", "My Partner Lock Records");
             myGuaranteeRecordMenu.Click += MyGuaranteeRecordMenu_Click;
@@ -181,7 +182,7 @@ namespace OX.UI.Casino
             casinoTrustPoolMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             casinoTrustPoolMenu.Name = "casinoTrustPoolMenu";
-            casinoTrustPoolMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.W)));
+            casinoTrustPoolMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.W)));
             casinoTrustPoolMenu.Size = new System.Drawing.Size(170, 22);
             casinoTrustPoolMenu.Text = UIHelper.LocalString("查看娱乐信托池", "View Casino Trust Pool");
             casinoTrustPoolMenu.Click += CasinoTrustPoolMenu_Click;
@@ -207,7 +208,7 @@ namespace OX.UI.Casino
             ruleSettingMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             ruleSettingMenu.Name = "ruleSettingMenu";
-            ruleSettingMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            ruleSettingMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             ruleSettingMenu.Size = new System.Drawing.Size(170, 22);
             ruleSettingMenu.Text = UIHelper.LocalString("娱乐规则", "Casino Rule");
             ruleSettingMenu.Click += RuleSettingMenu_Click;
@@ -217,7 +218,7 @@ namespace OX.UI.Casino
             casinoCommunityMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //casinoCommunityMenu.Image = global::Example.Icons.NewFile_6276;
             casinoCommunityMenu.Name = "casinoCommunityMenu";
-            casinoCommunityMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            casinoCommunityMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.C)));
             casinoCommunityMenu.Size = new System.Drawing.Size(170, 22);
             casinoCommunityMenu.Text = UIHelper.LocalString("娱乐社区", "Casino Community");
             casinoCommunityMenu.Click += CasinoCommunityMenu_Click;
@@ -265,7 +266,7 @@ namespace OX.UI.Casino
             this.Container.DockPanel.AddContent(this.MyPartnerLockRecords);
         }
 
-     
+
 
         private void PlayerQueryMenu_Click(object sender, EventArgs e)
         {
@@ -415,7 +416,31 @@ namespace OX.UI.Casino
             }
 
         }
-
+        public override void OnFlashMessage(FlashMessage flashMessage)
+        {
+            if (this.RuleSetting != default)
+                this.RuleSetting.OnFlashMessage(flashMessage);
+            if (this.NewRoomForm != default)
+                this.NewRoomForm.OnFlashMessage(flashMessage);
+            if (this.Rooms != default)
+                this.Rooms.OnFlashMessage(flashMessage);
+            if (this.BuryView != default)
+                this.BuryView.OnFlashMessage(flashMessage);
+            if (this.FollowRooms != default)
+                this.FollowRooms.OnFlashMessage(flashMessage);
+            if (this.RiddlesHash != default)
+                this.RiddlesHash.OnFlashMessage(flashMessage);
+            if (this.OpenRoomsView != default)
+                this.OpenRoomsView.OnFlashMessage(flashMessage);
+            if (this.Riddles != default)
+                this.Riddles.OnFlashMessage(flashMessage);
+            if (this.MyPartnerLockRecords != default)
+                this.MyPartnerLockRecords.OnFlashMessage(flashMessage);
+            foreach (var room in this.RoomViews.Values)
+            {
+                room.OnFlashMessage(flashMessage);
+            }
+        }
         public override void HeartBeat(HeartBeatContext context)
         {
             this.HeartBeatContext = context;
@@ -571,7 +596,7 @@ namespace OX.UI.Casino
         }
         public override void OnLoadBappModuleWalletSection(JObject bappSectionObject)
         {
-            
+
         }
 
         public void OpenRoom(MixRoom room)
@@ -590,7 +615,7 @@ namespace OX.UI.Casino
                         if (this.Operater != default && this.Operater.Wallet != default)
                             gr.ChangeWallet(this.Operater);
                         this.RoomViews[room.BetAddress] = gr;
-                    }                   
+                    }
                 }
             }
             if (gr.IsNotNull())

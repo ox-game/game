@@ -276,6 +276,10 @@ namespace OX.UI.Casino
         {
 
         }
+        public void OnFlashMessage(FlashMessage flashMessage)
+        {
+
+        }
         public void OnBlock(Block block)
         {
         }

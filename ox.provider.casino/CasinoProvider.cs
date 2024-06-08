@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace OX.Casino
 {
@@ -31,11 +32,11 @@ namespace OX.Casino
         Dictionary<Type, IGameProvider> gameProviders = new Dictionary<Type, IGameProvider>();
         public uint BuryNumber { get; set; }
 
-        
+
         public CasinoProvider(Bapp bapp) : base(bapp)
         {
             Db = DB.Open(Path.GetFullPath($"{WalletIndexDirectory}\\csn_{Message.Magic.ToString("X8")}"), new Options { CreateIfMissing = true });
-            var LR = this.Get<LastRoomId>(CasinoBizPersistencePrefixes.Casino_Last_RoomId, casino.CasinoSettleAccountAddress);
+            var LR = this.Get<LastRoomId>(CasinoBizPersistencePrefixes.Casino_Last_RoomId, casino.CasinoMasterAccountAddress);
             if (LR.IsNull())
             {
                 LR = new LastRoomId { RoomId = 1000 };
@@ -46,7 +47,7 @@ namespace OX.Casino
         }
 
         #region IBappProvider
-        
+
         public T GetGameProvider<T>() where T : class, IGameProvider
         {
             if (gameProviders.TryGetValue(typeof(T), out IGameProvider provider))
@@ -86,6 +87,10 @@ namespace OX.Casino
             }
             //ValetRegisters.Clear();
             //RoomPledges.Clear();
+        }
+        public override void OnFlashMessage(FlashMessage flashMessage)
+        {
+
         }
         public override void BeforeOnBlock(Block block)
         { }
@@ -141,9 +146,9 @@ namespace OX.Casino
                 {
                     OnIssueTransaction(batch, block, ist);
                 }
-                else if (tx is SideTransaction st)
+                else if (tx is SlotSideTransaction st)
                 {
-                    OnSideTransaction(batch, block, st);
+                    OnSlotSideTransaction(batch, block, st);
                 }
                 else if (tx is RangeTransaction rgt)
                 {
@@ -340,7 +345,7 @@ namespace OX.Casino
                         batch.Save_RiddlesHashRecord(riddlesandhash.RiddlesHash);
                     }
                     break;
-                
+
                 case (byte)CasinoType.ReplyBury:
                     if (rt.GetDataModel<ReplyBury>(bizshs, (byte)CasinoType.ReplyBury, out ReplyBury replyBury))
                     {
@@ -396,7 +401,7 @@ namespace OX.Casino
                         }
                     }
                     break;
-                 
+
                 case (byte)CasinoType.Bury:
                     if (at.GetDataModel<BuryRequest>(bizshs, (byte)CasinoType.Bury, out BuryRequest buryrequest))
                     {
@@ -566,9 +571,9 @@ namespace OX.Casino
             var r = this.MixRooms.FirstOrDefault(m => m.Value.RoomId == roomId);
             if (r.Equals(new KeyValuePair<UInt160, MixRoom>())) return default;
             return r.Value;
-             
+
         }
-        
+
         public Riddles GetRiddles(uint index)
         {
             Slice value;
@@ -735,7 +740,7 @@ namespace OX.Casino
             }
             return list.Distinct();
         }
-        
+
         #endregion
         #region Bury
         public uint GetBuryNumber(UInt160 betAddress)

@@ -42,12 +42,12 @@ namespace OX.UI.WebAgent
             casinoAgentMenu.Size = new System.Drawing.Size(39, 21);
             casinoAgentMenu.Text = UIHelper.LocalString("娱乐代理", "Casino Agent");
 
-  
+
             ToolStripMenuItem agentRoomMenu = new ToolStripMenuItem();
             agentRoomMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             agentRoomMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             agentRoomMenu.Name = "agentRoomMenu";
-            agentRoomMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            agentRoomMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
             agentRoomMenu.Size = new System.Drawing.Size(170, 22);
             agentRoomMenu.Text = UIHelper.LocalString("设置代理房间", "Agent Room Setting");
             agentRoomMenu.Click += AgentRoomMenu_Click;
@@ -56,7 +56,7 @@ namespace OX.UI.WebAgent
             roomsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             roomsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             roomsMenu.Name = "roomsMenu";
-            roomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            roomsMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.R)));
             roomsMenu.Size = new System.Drawing.Size(170, 22);
             roomsMenu.Text = UIHelper.LocalString("进入代理房间", "Go Agented Room");
             roomsMenu.Click += RoomsMenu_Click;
@@ -97,6 +97,10 @@ namespace OX.UI.WebAgent
         public override void HeartBeat(HeartBeatContext context)
         {
 
+
+        }
+        public override void OnFlashMessage(FlashMessage flashMessage)
+        {
 
         }
         public override void OnBlock(Block block)

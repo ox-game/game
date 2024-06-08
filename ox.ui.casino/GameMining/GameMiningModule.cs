@@ -40,13 +40,13 @@ namespace OX.UI.GameMining
             gameMiningMenu.Name = "gameMiningMenu";
             gameMiningMenu.Size = new System.Drawing.Size(39, 21);
             gameMiningMenu.Text = UIHelper.LocalString("竞技挖矿", "Game Mining");
-          
+
             ToolStripMenuItem eatsmallMiningMenu = new ToolStripMenuItem();
             eatsmallMiningMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             eatsmallMiningMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             eatsmallMiningMenu.Name = "eatsmallMiningMenu";
-            eatsmallMiningMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            eatsmallMiningMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.E)));
             eatsmallMiningMenu.Size = new System.Drawing.Size(170, 22);
             eatsmallMiningMenu.Text = UIHelper.LocalString("原位竞技挖矿", "EatSmall Fixed Mining");
             eatsmallMiningMenu.Click += EatsmallMiningMenu_Click;
@@ -56,7 +56,7 @@ namespace OX.UI.GameMining
             eatsmallFloatingMiningMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             //exitmenu.Image = global::Example.Icons.NewFile_6276;
             eatsmallFloatingMiningMenu.Name = "eatsmallFloatingMiningMenu";
-            eatsmallFloatingMiningMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            eatsmallFloatingMiningMenu.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control| System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             eatsmallFloatingMiningMenu.Size = new System.Drawing.Size(170, 22);
             eatsmallFloatingMiningMenu.Text = UIHelper.LocalString("本位竞技挖矿", "EatSmall Floating Mining");
             eatsmallFloatingMiningMenu.Click += EatsmallFloatingMiningMenu_Click;
@@ -143,6 +143,11 @@ namespace OX.UI.GameMining
         {
             if (this.EatsmallFixedView.IsNotNull()) this.EatsmallFixedView.OnRebuild();
             if (this.EatsmallFloatingView.IsNotNull()) this.EatsmallFloatingView.OnRebuild();
+        }
+        public override void OnFlashMessage(FlashMessage flashMessage)
+        {
+            if (this.EatsmallFixedView.IsNotNull()) this.EatsmallFixedView.OnFlashMessage(flashMessage);
+            if (this.EatsmallFloatingView.IsNotNull()) this.EatsmallFloatingView.OnFlashMessage(flashMessage);
         }
         public override void OnLoadBappModuleWalletSection(JObject bappSectionObject)
         {

@@ -31,7 +31,7 @@ namespace OX.Casino
                 return MixRooms.Values.ToArray();
             }
         }
-        public void OnSideTransaction(WriteBatch batch, Block block, SideTransaction st)
+        public void OnSlotSideTransaction(WriteBatch batch, Block block, SlotSideTransaction st)
         {
             if (st.VerifyRegRoom(out ECPoint holderPubKey))
             {

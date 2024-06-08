@@ -9,7 +9,7 @@ using OX.Wallets.Models;
 using OX.Wallets.NEP6;
 using OX.Wallets.UI.Controls;
 using OX.Wallets.UI.Forms;
-using OX.Cryptography.AES;
+using OX.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -118,8 +118,7 @@ namespace OX.UI.Bury
             VerifyPrivateBuryRequest VerifyPrivateBuryRequest = new VerifyPrivateBuryRequest { From = from.Account.ScriptHash, PrivateBuryRequest = PrivateBuryRequest };
             var key = from.Account.GetKey();
             if (key.IsNull()) return;
-            var sharekey = key.DiffieHellman(casino.CasinoSettleAccountPubKey);
-            var encryptDataForCipherCode = PrivateBuryRequest.ToArray().Encrypt(sharekey);
+            var encryptDataForCipherCode = PrivateBuryRequest.ToArray().Encrypt(key, casino.CasinoMasterAccountPubKey);
             BuryRequest request = new BuryRequest
             {
                 From = from.Account.ScriptHash,

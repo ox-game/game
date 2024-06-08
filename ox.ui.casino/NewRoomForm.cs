@@ -131,6 +131,10 @@ namespace OX.UI.Casino
         {
 
         }
+        public void OnFlashMessage(FlashMessage flashMessage)
+        {
+
+        }
         public void OnBlock(Block block)
         {
         }
@@ -177,9 +181,9 @@ namespace OX.UI.Casino
         }
         UInt160 BuildAddress(byte flag, AccountListItem ai)
         {
-            var tx = new SideTransaction()
+            var tx = new SlotSideTransaction()
             {
-                Recipient = casino.CasinoSettleAccountPubKey,
+                 Slot = casino.CasinoMasterAccountPubKey,
                 SideType = SideType.PublicKey,
                 Data = ai.Account.GetKey().PublicKey.ToArray(),
                 Flag = flag,
@@ -257,9 +261,9 @@ namespace OX.UI.Casino
                         }
                     }
 
-                    var tx = new SideTransaction()
+                    var tx = new SlotSideTransaction()
                     {
-                        Recipient = casino.CasinoSettleAccountPubKey,
+                        Slot = casino.CasinoMasterAccountPubKey,
                         SideType = SideType.PublicKey,
                         Data = from.Account.GetKey().PublicKey.ToArray(),
                         Flag = 0,
@@ -275,7 +279,7 @@ namespace OX.UI.Casino
 
                     outputs.Add(new TransactionOutput
                     {
-                        ScriptHash = casino.CasinoSettleAccountAddress,
+                        ScriptHash = casino.CasinoMasterAccountAddress,
                         AssetId = Blockchain.OXC,
                         Value = fee
                     });

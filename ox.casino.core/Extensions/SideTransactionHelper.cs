@@ -15,10 +15,10 @@ namespace OX.Casino
     public static class SideTransactionHelper
     {
         public static readonly Fixed8 MinSidePoolOXC = Fixed8.One * 1000;
-        public static bool VerifyRegRoom(this SideTransaction tx, out ECPoint pubkey)
+        public static bool VerifyRegRoom(this SlotSideTransaction tx, out ECPoint pubkey)
         {
             pubkey = default;
-            if (!tx.Recipient.Equals(casino.CasinoSettleAccountPubKey) || tx.SideType != SideType.PublicKey || !tx.AuthContract.Equals(Blockchain.SideAssetContractScriptHash)) return false;
+            if (!tx.Slot.Equals(casino.CasinoMasterAccountPubKey) || tx.Channel != 0x00 || tx.SideType != SideType.PublicKey || !tx.AuthContract.Equals(Blockchain.SideAssetContractScriptHash)) return false;
             try
             {
                 pubkey = tx.Data.AsSerializable<ECPoint>();
@@ -32,14 +32,14 @@ namespace OX.Casino
             }
             return true;
         }
-        public static bool VerifyRegRoomFee(this SideTransaction tx, Fixed8 regRoomFeeSetting)
+        public static bool VerifyRegRoomFee(this SlotSideTransaction tx, Fixed8 regRoomFeeSetting)
         {
-            var outputs = tx.Outputs.Where(m => m.AssetId.Equals(Blockchain.OXC) && m.ScriptHash.Equals(casino.CasinoSettleAccountAddress));
+            var outputs = tx.Outputs.Where(m => tx.Channel == 0x00 && m.AssetId.Equals(Blockchain.OXC) && m.ScriptHash.Equals(casino.CasinoMasterAccountAddress) && tx.AuthContract.Equals(Blockchain.SideAssetContractScriptHash));
             if (outputs.IsNullOrEmpty()) return false;
             if (outputs.Sum(m => m.Value) < regRoomFeeSetting) return false;
             return true;
         }
-        public static bool VerifyRegRoomRequest(this SideTransaction st, out RegRoomRequest request)
+        public static bool VerifyRegRoomRequest(this SlotSideTransaction st, out RegRoomRequest request)
         {
             request = default;
             try
@@ -60,14 +60,15 @@ namespace OX.Casino
             }
             return false;
         }
-        public static Contract GetContractForOtherFlag(this SideTransaction st, byte flag)
+        public static Contract GetContractForOtherFlag(this SlotSideTransaction st, byte flag)
         {
             using (ScriptBuilder sb = new ScriptBuilder())
             {
-                sb.EmitPush(st.Recipient);
+                sb.EmitPush(st.Slot);
                 sb.EmitPush(flag);
                 sb.EmitPush(st.Data);
                 sb.EmitPush((byte)st.SideType);
+                sb.EmitPush((byte)0x00);
                 sb.EmitAppCall(st.AuthContract);
                 return Contract.Create(new[] { ContractParameterType.Signature }, sb.ToArray());
             }

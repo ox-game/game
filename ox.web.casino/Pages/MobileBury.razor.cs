@@ -15,7 +15,7 @@ using OX.IO;
 using OX.Cryptography.ECC;
 using OX.Ledger;
 using OX.SmartContract;
-using OX.Cryptography.AES;
+using OX.Cryptography;
 using OX.Web.Models;
 using OX.Wallets.Hubs;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -216,8 +216,7 @@ namespace OX.Web.Pages
                     VerifyPrivateBuryRequest VerifyPrivateBuryRequest = new VerifyPrivateBuryRequest { From = this.Account.ScriptHash, PrivateBuryRequest = PrivateBuryRequest };
                     var key = this.Account.GetKey();
                     if (key.IsNull()) return;
-                    var sharekey = key.DiffieHellman(casino.CasinoSettleAccountPubKey);
-                    var encryptDataForCipherCode = PrivateBuryRequest.ToArray().Encrypt(sharekey);
+                    var encryptDataForCipherCode = PrivateBuryRequest.ToArray().Encrypt(key,casino.CasinoMasterAccountPubKey);
                     BuryRequest request = new BuryRequest
                     {
                         From = this.Account.ScriptHash,

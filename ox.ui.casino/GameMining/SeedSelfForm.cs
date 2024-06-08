@@ -16,7 +16,7 @@ using OX.Wallets.Models;
 using OX.Ledger;
 using OX.IO;
 using OX.SmartContract;
-using OX.Cryptography.AES;
+using OX.Cryptography;
 using OX.Cryptography.ECC;
 using System.Security.Principal;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;

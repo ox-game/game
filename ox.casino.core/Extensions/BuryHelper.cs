@@ -20,11 +20,12 @@ namespace OX.Casino
         {
             return GetBuryMetaSideTransaction().GetContract().ScriptHash;
         }
-        public static SideTransaction GetBuryMetaSideTransaction()
+        public static SlotSideTransaction GetBuryMetaSideTransaction()
         {
-            return new SideTransaction()
+            return new SlotSideTransaction()
             {
-                Recipient = casino.CasinoSettleAccountPubKey,
+                Slot = casino.CasinoMasterAccountPubKey,
+                Channel = 0x01,
                 SideType = SideType.PublicKey,
                 Data = casino.CasinoMasterAccountPubKey.ToArray(),
                 Flag = 0,

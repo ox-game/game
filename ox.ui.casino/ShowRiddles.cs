@@ -9,7 +9,7 @@ using OX.Wallets.Models;
 using OX.Wallets.NEP6;
 using OX.Wallets.UI.Controls;
 using OX.Wallets.UI.Forms;
-using OX.Cryptography.AES;
+using OX.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

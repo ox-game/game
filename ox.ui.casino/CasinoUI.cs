@@ -67,5 +67,11 @@ namespace OX.UI.Casino
                 if (m is Module module)
                     module.OnRebuild();
         }
+        public void OnFlashMessage(FlashMessage flashMessage)
+        {
+            foreach (var m in this.Modules)
+                if (m is Module module)
+                    module.OnFlashMessage(flashMessage);
+        }
     }
 }

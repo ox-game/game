@@ -161,6 +161,10 @@ namespace OX.UI.Bury
         {
 
         }
+        public void OnFlashMessage(FlashMessage flashMessage)
+        {
+
+        }
         public void BeforeOnBlock(Block block)
         {
             if (block.Index > needReload + 5)////To prevent overflow, subtract 10

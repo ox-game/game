@@ -37,21 +37,22 @@ namespace OX
         "AXJLqzr2kDvXYTf9yC5tzqg77wKUy7w73d"
         };
       
-        public static UInt256 GamblerLuckBonusAsset { get; private set; } = UInt256.Parse("0xcefc4e53fbf8a55637fe971987c18774116d8fbe3556795147122166a954ae48");
+        public static UInt256 GamblerLuckBonusAsset { get; private set; } = UInt256.Parse("0xf986af708e70b54dfecfedb18bd03f4530698da48bb7c47794c2c2b4f7bacd37");
+       
         public static ECPoint CasinoMasterAccountPubKey = ECPoint.DecodePoint(PubKeys[0].HexToBytes(), ECCurve.Secp256r1);
         public static UInt160 CasinoMasterAccountAddress = Contract.CreateSignatureRedeemScript(CasinoMasterAccountPubKey).ToScriptHash();
 
-        public static ECPoint CasinoSettleAccountPubKey = ECPoint.DecodePoint(PubKeys[2].HexToBytes(), ECCurve.Secp256r1);
-        public static UInt160 CasinoSettleAccountAddress = Contract.CreateSignatureRedeemScript(CasinoSettleAccountPubKey).ToScriptHash();
+        //public static ECPoint CasinoSettleAccountPubKey = ECPoint.DecodePoint(PubKeys[2].HexToBytes(), ECCurve.Secp256r1);
+        //public static UInt160 CasinoSettleAccountAddress = Contract.CreateSignatureRedeemScript(CasinoSettleAccountPubKey).ToScriptHash();
 
-        public static ECPoint TeamSettleAccountPubKey = ECPoint.DecodePoint(PubKeys[4].HexToBytes(), ECCurve.Secp256r1);
-        public static UInt160 TeamSettleAccountAddress = Contract.CreateSignatureRedeemScript(TeamSettleAccountPubKey).ToScriptHash();
+        //public static ECPoint TeamSettleAccountPubKey = ECPoint.DecodePoint(PubKeys[4].HexToBytes(), ECCurve.Secp256r1);
+        //public static UInt160 TeamSettleAccountAddress = Contract.CreateSignatureRedeemScript(TeamSettleAccountPubKey).ToScriptHash();
 
         public static ECPoint CasinoWitnessAccountPubKey = ECPoint.DecodePoint(PubKeys[5].HexToBytes(), ECCurve.Secp256r1);
         public static UInt160 CasinoWitnessAccountAddress = Contract.CreateSignatureRedeemScript(CasinoWitnessAccountPubKey).ToScriptHash();
 
         public static UInt160 BuryBetAddress = BuryHelper.GetBuryAddress();
-        public const string GamblerLuckBonusAssetDexPool = "Aen1FbVYuRkCxPRfknVCVdD2BT3wo76pdc";
+        public const string GamblerLuckBonusAssetDexPool = "AVJJpNAvzgPz3FCEFMhgriQdX16eVUumXn";
 
         static casino()
         {

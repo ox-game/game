@@ -22,7 +22,7 @@ namespace OX.Casino
         }
         public static void Save_LastRoomId(this WriteBatch batch, LastRoomId lastRoomId)
         {
-            batch.Put(SliceBuilder.Begin(CasinoBizPersistencePrefixes.Casino_Last_RoomId).Add(casino.CasinoSettleAccountAddress), SliceBuilder.Begin().Add(lastRoomId));
+            batch.Put(SliceBuilder.Begin(CasinoBizPersistencePrefixes.Casino_Last_RoomId).Add(casino.CasinoMasterAccountAddress), SliceBuilder.Begin().Add(lastRoomId));
         }
         public static void Save_RoomPartnerLockRecord(this WriteBatch batch, CasinoProvider miningProvider, Block block, ushort txIndex, MixRoom Room, LockAssetTransaction lat, TransactionOutput output, UInt160 recipient)
         {

@@ -13,7 +13,10 @@ namespace OX.UI.Casino
     {
         public override string MatchKernelVersion => "1.0.2";
         public override ECPoint[] BizPublicKeys => casino.BizPublicKeys;
-
+        public override IFlashMessageProvider BuildFlashMessageProvider()
+        {
+            return default;
+        }
         public override IBappProvider BuildBappProvider()
         {
             return new CasinoProvider(this);
@@ -31,9 +34,10 @@ namespace OX.UI.Casino
         {
             return new SideScope[] {
                 new SideScope {
-              MasterAddress=casino.CasinoSettleAccountAddress,
+              MasterAddress=casino.CasinoMasterAccountAddress,
                Description=UIHelper.LocalString("娱乐边际信托","Casino Side Trust")
-             },
+             }
+                ,
                  new SideScope {
               MasterAddress=casino.CasinoWitnessAccountAddress,
                Description=UIHelper.LocalString("娱乐见证信托","Casino Witness Trust")

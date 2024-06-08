@@ -12,9 +12,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using OX.Network.P2P;
-using OX.Cryptography;
 using OX.Cryptography.ECC;
-using OX.Cryptography.AES;
+using OX.Cryptography;
 using OX.Casino;
 
 namespace OX.UI.Casino
@@ -120,6 +119,10 @@ namespace OX.UI.Casino
         {
         }
         public void HeartBeat(HeartBeatContext context)
+        {
+
+        }
+        public void OnFlashMessage(FlashMessage flashMessage)
         {
 
         }
