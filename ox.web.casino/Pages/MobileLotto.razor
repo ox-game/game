@@ -154,7 +154,7 @@
                             @foreach (var data in context.CheckDatas)
                             {
                                 <a class="checktitle">@this.WebLocalString($"{data.N}位:",$"Position {data.N}:")</a>
-                                <CheckboxGroup Options="@data.Options" @bind-Value="@data.Result" OnChange=this.OnCheckChange />
+                                <CheckboxGroup Options="@data.Options" @bind-Value="@data.Result" TValue="string" OnChange=this.OnCheckChange />
                                 <br />
                             }
 

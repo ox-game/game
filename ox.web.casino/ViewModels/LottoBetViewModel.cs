@@ -16,7 +16,7 @@ namespace OX.Web.ViewModels
     public class CkeckData
     {
         public uint N { get; set; }
-        public CheckboxOption[] Options { get; set; }
+        public CheckboxOption<string>[] Options { get; set; }
         public string[] Result { get; set; }
 
     }

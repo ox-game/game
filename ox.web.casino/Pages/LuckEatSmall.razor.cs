@@ -58,7 +58,6 @@ namespace OX.Web.Pages
         Fixed8 MinBet = Fixed8.Zero;
         EatSmallBetViewModel BetModel = new EatSmallBetViewModel() { SpecialCode = "a" };
 
-
         protected override void InitRoomPage()
         {
             BankerPosition = this.Room.Request.Flag;

@@ -4,11 +4,20 @@
 
 <Microsoft.AspNetCore.Components.Web.Extensions.Head.Title Value=@PageTitle />
 <GridContent>
-    <Row Gutter="24">
-        <AntDesign.Col Lg="16" Md="24">
+    <Flex Gap="middle">
+        <div class="bt">
+            <Button Icon="plus" OnClick="OpenBury" Type="@ButtonType.Primary">@this.WebLocalString("埋雷", "Bury")</Button>
+            <a class="recordlink" href="/_pc/casino/bury/hitrecords" target="_blank">@this.WebLocalString("命中记录", "Hit Records")</a>
+        </div>
+    </Flex>
+    <Flex Gap="middle">
+        <Flex Vertical=this.IsMobile>
             <Card Class="tabsCard">
                 <CardTabs>
-                    <Tabs DefaultActiveKey="1">
+                    @{
+                        TabPosition tp = this.IsMobile ? TabPosition.Left : TabPosition.Top;
+                    }
+                    <Tabs DefaultActiveKey="1" TabPosition=tp>
                         <TabPane Key="1">
                             <TabTemplate>                                <Badge Dot>   <a> @PageTitle</a>         </Badge>                               </TabTemplate>
                             <ChildContent>
@@ -26,7 +35,7 @@
                                         <Tooltip Class="tip" Placement="Placement.RightTop" Title=@tip ArrowPointAtCenter="true" Trigger="@(new AntDesign.Trigger[] { AntDesign.Trigger.Click})">
                                             @if (bmm.index <= 100)
                                             {
-                                                @if (this.HaveEthID&& br.Request.From == this.EthID.MapAddress)
+                                                @if (this.HaveEthID && br.Request.From == this.EthID.MapAddress)
                                                 {
                                                     <Button Danger Type="@ButtonType.Primary">@br.Request.PlainBuryPoint</Button>
                                                 }
@@ -37,7 +46,7 @@
                                             }
                                             else
                                             {
-                                                @if (this.HaveEthID&&br.Request.From == this.EthID.MapAddress)
+                                                @if (this.HaveEthID && br.Request.From == this.EthID.MapAddress)
                                                 {
                                                     <Button Type="@ButtonType.Primary">@br.Request.PlainBuryPoint</Button>
                                                 }
@@ -103,49 +112,38 @@
                     </Tabs>
                 </CardTabs>
             </Card>
-        </AntDesign.Col>
-        <AntDesign.Col Lg="8" Md="24">
-            <div class="bt">
-                <Button Icon="plus" OnClick="OpenBury" Type="@ButtonType.Primary">@this.WebLocalString("埋雷", "Bury")</Button>
-                <a class="recordlink" href="/_pc/casino/bury/hitrecords" target="_blank">@this.WebLocalString("命中记录", "Hit Records")</a>
-            </div>
-            <div class="bt">
-                <OX.Mix.Components.Chat BetAddress="@casino.BuryBetAddress" EthID="@this.EthID" />
-            </div>
-        </AntDesign.Col>
-    </Row>
+        </Flex>
+    </Flex>
+
 </GridContent>
 
 <div>
     @if (this.HaveEthID)
     {
-        <Drawer Closable="true" Width="400" Visible="DrawerVisible" Title='@this.WebLocalString("埋雷", "Bury")' OnClose="_=>CloseBury()">
+        <Drawer Closable="true" Width="200" Visible="DrawerVisible" Title='@this.WebLocalString("埋雷", "Bury")' OnClose="_=>CloseBury()">
             <Template style="height:90%">
-            <Form Model="@this.BuryModel"
-                  Style="margin-top: 8px;"
-                  OnFinish="GoBury">
-                <FormItem Label="@this.WebLocalString("余额","Balance")" ShowFeedbackOnError="true">
-                    <Input ReadOnly=true @bind-Value="@this.BalanceState.AvailableBalance"></Input>
-                </FormItem>
-                <FormItem Label="@this.WebLocalString("金额","Amount")" ShowFeedbackOnError="true">
-                    <AntDesign.InputNumber @bind-Value="@context.Amount" Min="1" TValue="uint" Max="100000000" PlaceHolder='@this.WebLocalString("请输入埋雷金额","please enter bury amount")'></AntDesign.InputNumber>
-                </FormItem>
-                <FormItem Label="@this.WebLocalString("明码","Plain Code")" ShowFeedbackOnError="true">
-                    <AntDesign.InputNumber @bind-Value="@context.PlainCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷明码","please enter bury plain code")'></AntDesign.InputNumber>
-                </FormItem>
-                <FormItem Label="@this.WebLocalString("暗码","Secret Code")" ShowFeedbackOnError="true">
-                    <AntDesign.InputNumber @bind-Value="@context.SecretCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷暗码","please enter bury secret code")'></AntDesign.InputNumber>
-                </FormItem>
-                <Row Gutter="8">
-                    <AntDesign.Col Span="18">
-                    </AntDesign.Col>
-                    <AntDesign.Col Span="6">
+                <Form Model="@this.BuryModel"
+                      Style="margin-top: 8px;"
+                      OnFinish="GoBury">
+                    <FormItem Label="@this.WebLocalString("余额","Balance")" ShowFeedbackOnError="true">
+                        <Input ReadOnly=true @bind-Value="@this.BalanceState.AvailableBalance"></Input>
+                    </FormItem>
+                    <FormItem Label="@this.WebLocalString("金额","Amount")" ShowFeedbackOnError="true">
+                        <AntDesign.InputNumber @bind-Value="@context.Amount" Min="1" TValue="uint" Max="100000000" PlaceHolder='@this.WebLocalString("请输入埋雷金额","please enter bury amount")'></AntDesign.InputNumber>
+                    </FormItem>
+                    <FormItem Label="@this.WebLocalString("明码","Plain Code")" ShowFeedbackOnError="true">
+                        <AntDesign.InputNumber @bind-Value="@context.PlainCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷明码","please enter bury plain code")'></AntDesign.InputNumber>
+                    </FormItem>
+                    <FormItem Label="@this.WebLocalString("暗码","Secret Code")" ShowFeedbackOnError="true">
+                        <AntDesign.InputNumber @bind-Value="@context.SecretCode" Min="0" TValue="byte" Max="255" PlaceHolder='@this.WebLocalString("请输入埋雷暗码","please enter bury secret code")'></AntDesign.InputNumber>
+                    </FormItem>
+                    <FormItem >
                         <Button Icon="plus" HtmlType="submit" Type="primary" Disabled=false>@this.WebLocalString("埋雷", "Bury")</Button>
-                    </AntDesign.Col>
-                </Row>
-            </Form>
-        </Template>
-    </Drawer>
+                    </FormItem>
+                   
+                </Form>
+            </Template>
+        </Drawer>
     }
 </div>
 
@@ -164,11 +162,12 @@
         padding: 0px;
     }
 
-    .code{
+    .code {
         margin: 2px;
         padding: 3px;
     }
-    .recordlink{
+
+    .recordlink {
         margin: 10px;
     }
 </style>

@@ -85,6 +85,7 @@ namespace OX.Casino
             {
                 gameProvider.OnRebuild(wallet);
             }
+            this.LastRoomId = new LastRoomId { RoomId = 1000 };
             //ValetRegisters.Clear();
             //RoomPledges.Clear();
         }

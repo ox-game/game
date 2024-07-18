@@ -341,10 +341,10 @@ namespace OX.Web.Pages
             for (uint i = 0; i < 10; i++)
             {
                 var nonce = rd.Next(0, 10);
-                List<CheckboxOption> cos = new List<CheckboxOption>();
+                List<CheckboxOption<string>> cos = new List<CheckboxOption<string>>();
                 for (int k = 0; k < 10; k++)
                 {
-                    var co = new CheckboxOption { Label = k.ToString(), Value = k.ToString() };
+                    var co = new CheckboxOption<string> { Label = k.ToString(), Value = k.ToString() };
                     if (nonce == k)
                         co.Checked = true;
                     cos.Add(co);
