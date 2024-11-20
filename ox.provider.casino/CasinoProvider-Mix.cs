@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using OX.BMS;
 
 namespace OX.Casino
 {
@@ -31,6 +32,9 @@ namespace OX.Casino
                 return MixRooms.Values.ToArray();
             }
         }
+        //public Dictionary<string, GuessAnswer> GuessAnswers { get; private set; } = new Dictionary<string, GuessAnswer>();
+        //public Dictionary<MarkChannelRound, GuessAnswer> LatestGuessAnswer { get; internal set; } = new Dictionary<MarkChannelRound, GuessAnswer>();
+        public Dictionary<ushort, Dictionary<string, uint>> Web3Nodes { get; internal set; } = new Dictionary<ushort, Dictionary<string, uint>>();
         public void OnSlotSideTransaction(WriteBatch batch, Block block, SlotSideTransaction st)
         {
             if (st.VerifyRegRoom(out ECPoint holderPubKey))
@@ -61,9 +65,9 @@ namespace OX.Casino
                             {
                                 RoomId = this.LastRoomId.RoomId,
                                 BetAddress = betSH,
-                                PoolAddress = st.GetContractForOtherFlag(1).ScriptHash,
-                                FeeAddress = st.GetContractForOtherFlag(2).ScriptHash,
-                                BankerAddress = st.GetContractForOtherFlag(3).ScriptHash,
+                                PoolAddress = st.GetContractForOtherFlag(0x00, 0x01).ScriptHash,
+                                FeeAddress = st.GetContractForOtherFlag(0x00, 0x02).ScriptHash,
+                                BankerAddress = st.GetContractForOtherFlag(0x00, 0x03).ScriptHash,
                                 Holder = addr,
                                 HolderPubkey = holderPubKey,
                                 Request = request
@@ -86,6 +90,7 @@ namespace OX.Casino
                     }
                 }
             }
+         
         }
         public void OnLockAssetTransactionForRoomPartner(WriteBatch batch, Block block, ushort txIndex, LockAssetTransaction lat)
         {

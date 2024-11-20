@@ -26,4 +26,32 @@ namespace OX.Casino
             RoomId = reader.ReadUInt32();
         }
     }
+    public class LastBitSixBankerId : ISerializable
+    {
+        public uint BitSixBankerId;
+        public virtual int Size => sizeof(uint);
+        public void Serialize(BinaryWriter writer)
+        {
+            writer.Write(BitSixBankerId);
+
+        }
+        public void Deserialize(BinaryReader reader)
+        {
+            BitSixBankerId = reader.ReadUInt32();
+        }
+    }
+    public class LastBitSixMemberId : ISerializable
+    {
+        public uint BitSixMemberId;
+        public virtual int Size => sizeof(uint);
+        public void Serialize(BinaryWriter writer)
+        {
+            writer.Write(BitSixMemberId);
+
+        }
+        public void Deserialize(BinaryReader reader)
+        {
+            BitSixMemberId = reader.ReadUInt32();
+        }
+    }
 }

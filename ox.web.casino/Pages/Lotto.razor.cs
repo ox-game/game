@@ -51,7 +51,6 @@ namespace OX.Web.Pages
         //Fixed8 masterBalance = Fixed8.Zero;
         Fixed8 poolBalance = Fixed8.Zero;
         public EthAssetBalanceState BalanceState = new EthAssetBalanceState();
-        char[] keys = default;
         string LotteryResult = string.Empty;
         bool DrawerVisible = false;
         Fixed8 MinBet = Fixed8.Zero;

@@ -8,6 +8,7 @@ using OX.Network.P2P.Payloads;
 using OX.SmartContract;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace OX
 {
@@ -29,11 +30,27 @@ namespace OX
         RoomStateRequest = 0x68,
         Bet = 0x69,
         Bury = 0x6A,
-        PrivateRoomMemberSetting = 0x6B
+        PrivateRoomMemberSetting = 0x6B,
+        DirectSalePublish = 0x6D,
+        TabletMessage = 0x6E,
+        //TermClear = 0x6F,
+        //MarkSixBankerSetting = 0x70,
+        //MarkSixRent = 0x71,
+        MarkGuessAnswer = 0x72,
+        MarkCipherBet = 0x73,
+        MarkCipherSettle = 0x74,
+        MarkCipherTermClear = 0x75,
+        MarkPortPayFee = 0x76,
+        CasinoWeb3NodePublish = 0x77,
+        PortMessage = 0x78,
     }
 
     public static class CasinoHelper
     {
+        public static bool VerifyDirectSalePublish(this DirectSalePublish publish, AskTransaction at)
+        {
+            return at.Outputs.Where(m => m.ScriptHash == casino.CasinoMasterAccountAddress && m.AssetId == Blockchain.OXC && m.Value >= Fixed8.One * 5).IsNotNullAndEmpty();
+        }
         public static bool VerifyBetRequest(this BetRequest request, AskTransaction at, Dictionary<UInt160, MixRoom> Rooms, out ushort? n)
         {
             if (at.Outputs.IsNotNullAndEmpty())
@@ -182,11 +199,11 @@ namespace OX
                 for (ushort k = 0; k < at.Outputs.Length; k++)
                 {
                     var output = at.Outputs[k];
-                    if(request.VerifyBuryRequest(output))
+                    if (request.VerifyBuryRequest(output))
                     {
                         n = k;
                         return true;
-                    }                    
+                    }
                 }
             }
             n = default;

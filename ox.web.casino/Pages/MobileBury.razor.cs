@@ -191,7 +191,7 @@ namespace OX.Web.Pages
             }
             CloseBury();
         }
-        private async void doBury(uint amt)
+        private  void doBury(uint amt)
         {
 
             if (Fixed8.One * amt < MinBet)

@@ -45,5 +45,20 @@
         public const byte Casino_GameMining_Airdrop = 0x4A;
         public const byte Casino_RoomPartnerLock_Record = 0x4B;
         public const byte Casino_Bury_Hit_EthMap = 0x4C;
+
+        public const byte Mark_Member = 0x4D;
+        public const byte BMS_Last_BankerId = 0x4E;
+        public const byte BMS_Bet_Record = 0x4F;
+        public const byte BMS_Bet_Record_Bettor = 0x50;
+        public const byte BMS_TermAnswer = 0x51;
+        public const byte DirectSale_Publish = 0x52;
+        public const byte DirectSale_SellerTx_My = 0x53;
+        public const byte Tablet_Message = 0x54;
+        public const byte BMS_Last_MemberId = 0x55;
+        public const byte BMS_GuessAnswer = 0x56;
+        public const byte BMS_PortPlayerTerm_Record = 0x57;
+        public const byte Casino_Web3Node_Publish = 0x58;
+        public const byte BMS_Recent_Orders = 0x59;
+        public const byte BMS_Port_Message = 0x5A;
     }
 }

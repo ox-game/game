@@ -2,7 +2,6 @@
 using OX.IO;
 using OX.Network.P2P.Payloads;
 using OX.Wallets;
-//using OX.UI.Agent;
 using OX.UI.Bury;
 using OX.UI.GameMining;
 using System.Collections.Generic;
@@ -29,7 +28,8 @@ namespace OX.UI.Casino
 
             GameMiningModule gameminingmodule = new GameMiningModule(bapp);
             this._modules[gameminingmodule.ModuleName] = gameminingmodule;
-
+            //BitSixModule bitsixmodule = new BitSixModule(bapp);
+            //this._modules[bitsixmodule.ModuleName] = bitsixmodule;
         }
         public void OnBappEvent(BappEvent bappEvent)
         {

@@ -28,5 +28,16 @@
         public const byte RoomOXSMinLock = 0x17;
         public const byte PrivateRoomPledgePeriod = 0x18;
         public const byte PoolBonusMinBet = 0x19;
+        public const byte MarkPortMinFee = 0x1A;
+        public const byte BitSixAgentFee = 0x1B;
+        public const byte SlaveJudgeSource = 0x1C;
+        public const byte JudgeChannel = 0x1D;
+        public const byte DefaultEatSmallRooms = 0x1E;
+        public const byte BasicAgentDayFee = 0x1F;
+        public const byte SeniorAgentDayFee = 0x20;
+        public const byte BasicPortDayFee = 0x21;
+        public const byte SeniorPortDayFee = 0x22;
+        public const byte MarkSixOpenSeconds = 0x23;
+        public const byte PortMinBalance = 0x24;
     }
 }

@@ -22,6 +22,7 @@
     <PackageReference Include="Nethereum.Signer" Version="4.14.0" />
   </ItemGroup>
 	<ItemGroup>
+	  <Folder Include="Apis\" />
 	  <Folder Include="Shared\" />
 	  <Folder Include="Styles\" />
 	  <Folder Include="wwwroot\" />

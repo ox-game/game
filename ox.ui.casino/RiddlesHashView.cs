@@ -26,11 +26,7 @@ namespace OX.UI.Casino
         public Module Module { get; set; }
         protected INotecase Operater;
         protected uint CurrentIndex;
-        bool Run = false;
         uint LastRiddlesHashIndex;
-        uint CurrentCollisionIndex;
-        long CollinsionCount;
-        RiddlesHash rh;
         #region Constructor Region
 
         public RiddlesHashView()

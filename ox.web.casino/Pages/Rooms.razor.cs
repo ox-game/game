@@ -52,12 +52,25 @@ namespace OX.Web.Pages
             var module = ui.Modules.FirstOrDefault(m => m.ModuleName == "webagentmodule");
             if (module.IsNotNull() && module is WebAgentModule webAgentModule)
             {
-                foreach (var r in webAgentModule.Rooms)
+                if (webAgentModule.Rooms.IsNotNullAndEmpty())
                 {
-                    var room = bizPlugin.AllRooms.FirstOrDefault(m => m.RoomId == r);
-                    if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                    foreach (var r in webAgentModule.Rooms)
                     {
-                        Rooms.Add(room);
+                        var room = bizPlugin.AllRooms.FirstOrDefault(m => m.RoomId == r);
+                        if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                        {
+                            Rooms.Add(room);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var room in bizPlugin.AllRooms)
+                    {
+                        if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                        {
+                            Rooms.Add(room);
+                        }
                     }
                 }
             }
@@ -65,7 +78,7 @@ namespace OX.Web.Pages
         }
         public bool VerifyRoom(ICasinoProvider provider, MixRoom room)
         {
-            if (room.Request.Permission== RoomPermission.Private && this.EthID.IsNull()) return false;
+            if (room.Request.Permission == RoomPermission.Private && this.EthID.IsNull()) return false;
             if (!ValidPrivateRoom(room, this.EthID)) return false;
             return provider.VerifyPartnerLock(room, out IEnumerable<RoomPartnerLockRecord> validRecords, out Fixed8 haveLockTotal, out Fixed8 needLockTotal, out uint EarliestExpiration);
         }
@@ -76,7 +89,7 @@ namespace OX.Web.Pages
                 bool ok = false;
                 if (room.RoomMemberSetting.IsNotNull())
                 {
-                    ok =ethID.IsNotNull()&& room.RoomMemberSetting.Members.Contains(ethID.MapAddress);
+                    ok = ethID.IsNotNull() && room.RoomMemberSetting.Members.Contains(ethID.MapAddress);
                 }
                 return ok;
             }

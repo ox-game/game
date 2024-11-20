@@ -15,7 +15,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using OX.Cryptography;
-using OX.Cryptography;
 
 namespace OX.UI.Casino
 {
@@ -93,6 +92,6 @@ namespace OX.UI.Casino
 
         }
 
-
+       
     }
 }

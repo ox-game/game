@@ -5,6 +5,7 @@ using OX.Wallets;
 using System.Collections.Generic;
 using OX.IO.Data.LevelDB;
 using OX.Casino;
+using OX.BMS;
 
 namespace OX
 {
@@ -52,6 +53,9 @@ namespace OX
         IEnumerable<BuryMergeTx> GetMyHitBuryRecords(UInt160 betAddress, UInt160 player);
         IEnumerable<BuryMergeTx> GetEthMapHitBuryRecords(UInt160 betAddress, UInt160 player);
         IEnumerable<KeyValuePair<RoomPartnerLockRecord, LockAssetTransaction>> GetRoomPartnerLockRecords(UInt160 betAddress);
+        //Dictionary<string, GuessAnswer> GuessAnswers { get; }
+        //Dictionary<MarkChannelRound, GuessAnswer> LatestGuessAnswer { get; }
+        Dictionary<ushort, Dictionary<string, uint>> Web3Nodes { get; }
     }
     public interface IGameProvider
     {

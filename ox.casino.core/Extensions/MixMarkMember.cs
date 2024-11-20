@@ -12,59 +12,71 @@ using System.IO;
 using OX.Network.P2P;
 using OX.Wallets;
 
-namespace OX.Casino
+namespace OX.BMS
 {
-    public class MixRoom : ISerializable
+    public class MixMarkMember : ISerializable
     {
-        public uint RoomId;
+        public uint MarkMemberId;
         public UInt160 BetAddress;
         public UInt160 PoolAddress;
         public UInt160 FeeAddress;
-        public UInt160 BankerAddress;
+        public UInt160 PledgeAddress;
+        public UInt160 DepositAddress;
         public UInt160 Holder;
         public ECPoint HolderPubkey;
-        public RegRoomRequest Request;
-        public RoomMemberSetting RoomMemberSetting;
+        public RegMarkMemberRequest Request;
+        public MarkSetting MarkSetting;
+        public uint ExpireTimeStamp;
+        public ulong TotalBetAmount;
+        public ulong TotalPrizeAmount;
 
         public virtual int Size => sizeof(uint) + BetAddress.Size + PoolAddress.Size + FeeAddress.Size
-            + BankerAddress.Size + Holder.Size + HolderPubkey.Size + Request.Size +sizeof(uint)+ (RoomMemberSetting.IsNotNull() ? RoomMemberSetting.Size : 0);
+            + PledgeAddress.Size+DepositAddress.Size + Holder.Size + HolderPubkey.Size + Request.Size + (MarkSetting.IsNotNull() ? MarkSetting.Size : 0) + sizeof(uint) + sizeof(ulong) + sizeof(ulong);
         public void Serialize(BinaryWriter writer)
         {
-            writer.Write(RoomId);
+            writer.Write(MarkMemberId);
             writer.Write(BetAddress);
             writer.Write(PoolAddress);
             writer.Write(FeeAddress);
-            writer.Write(BankerAddress);
+            writer.Write(PledgeAddress);
+            writer.Write(DepositAddress);
             writer.Write(Holder);
             writer.Write(HolderPubkey);
             writer.Write(Request);
-            if (RoomMemberSetting.IsNotNull())
+            if (MarkSetting.IsNotNull())
             {
-                writer.Write((uint)RoomMemberSetting.Size);
-                writer.Write(RoomMemberSetting);
+                writer.Write((uint)MarkSetting.Size);
+                writer.Write(MarkSetting);
             }
             else
                 writer.Write((uint)0);
+            writer.Write(ExpireTimeStamp);
+            writer.Write(TotalBetAmount);
+            writer.Write(TotalPrizeAmount);
         }
         public void Deserialize(BinaryReader reader)
         {
-            RoomId = reader.ReadUInt32();
+            MarkMemberId = reader.ReadUInt32();
             BetAddress = reader.ReadSerializable<UInt160>();
             PoolAddress = reader.ReadSerializable<UInt160>();
             FeeAddress = reader.ReadSerializable<UInt160>();
-            BankerAddress = reader.ReadSerializable<UInt160>();
+            PledgeAddress = reader.ReadSerializable<UInt160>();
+            DepositAddress = reader.ReadSerializable<UInt160>();
             Holder = reader.ReadSerializable<UInt160>();
             HolderPubkey = reader.ReadSerializable<ECPoint>();
-            Request = reader.ReadSerializable<RegRoomRequest>();
+            Request = reader.ReadSerializable<RegMarkMemberRequest>();
             uint d = reader.ReadUInt32();
             if (d > 0)
             {
-                RoomMemberSetting = reader.ReadSerializable<RoomMemberSetting>();
+                MarkSetting = reader.ReadSerializable<MarkSetting>();
             }
+            ExpireTimeStamp = reader.ReadUInt32();
+            TotalBetAmount = reader.ReadUInt64();
+            TotalPrizeAmount = reader.ReadUInt64();
         }
         public override bool Equals(object obj)
         {
-            if (obj is MixRoom mr)
+            if (obj is MixMarkMember mr)
             {
                 return mr.BetAddress == this.BetAddress;
             }

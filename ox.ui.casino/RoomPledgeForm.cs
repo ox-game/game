@@ -30,7 +30,6 @@ namespace OX.UI.Casino
         public Module Module { get; set; }
         INotecase Operator;
         MixRoom Room;
-        Fixed8 TotalLockVolume;
         Fixed8 RoomOXSMinLockAmount;
         uint PeroidBlocks;
         bool isFull = false;

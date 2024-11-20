@@ -14,6 +14,8 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using OX.BMS;
+using System.Threading.Tasks.Dataflow;
 
 namespace OX.Casino
 {
@@ -44,6 +46,30 @@ namespace OX.Casino
             this.LastRoomId = LR;
             this.MixRooms = new Dictionary<UInt160, MixRoom>(this.GetAll<UInt160, MixRoom>(CasinoBizPersistencePrefixes.Casino_Room));
             this.BuryNumber = this.GetBuryNumber(casino.BuryBetAddress);
+
+
+            //this.LatestGuessAnswer = new Dictionary<MarkChannelRound, GuessAnswer>();
+            //foreach (var ga in this.GetAll<GuessAnswerKey, GuessAnswerValue>(CasinoBizPersistencePrefixes.BMS_GuessAnswer))
+            //{
+            //    var record = new GuessAnswer { Key = ga.Key, Value = ga.Value };
+            //    this.GuessAnswers[ga.Key.ToString()] = record;
+            //    if (!this.LatestGuessAnswer.TryGetValue(record.Key.ChannelRound, out var v) || record.Key.Term.ToDateTime() > v.Key.Term.ToDateTime())
+            //    {
+            //        this.LatestGuessAnswer[record.Key.ChannelRound] = record;
+            //    }
+            //}
+            foreach (var ga in this.GetAll<Web3Node,OX.IO.Wrappers.UInt32Wrapper>(CasinoBizPersistencePrefixes.Casino_Web3Node_Publish).GroupBy(m => m.Key.Catalog))
+            {
+                if (!Web3Nodes.TryGetValue(ga.Key, out var dic))
+                {
+                    dic = new Dictionary<string, uint>();
+                    Web3Nodes[ga.Key] = dic;
+                }
+                foreach (var node in ga)
+                {
+                    dic[$"{node.Key.NodeAddress}:{node.Key.Port}"] = node.Value;
+                }
+            }
         }
 
         #region IBappProvider
@@ -70,6 +96,10 @@ namespace OX.Casino
         }
         public override void OnRebuild(Wallet wallet)
         {
+            this.MixRooms.Clear();
+            //this.GuessAnswers.Clear();
+            //this.LatestGuessAnswer.Clear();
+            this.Web3Nodes.Clear();
             WriteBatch batch = new WriteBatch();
             ReadOptions options = new ReadOptions { FillCache = false };
             using (Iterator it = Db.NewIterator(options))
@@ -308,6 +338,7 @@ namespace OX.Casino
                             break;
                     }
                 }
+                //WatchBitMarkSixBanker(batch, block, tx);
             }
             foreach (var gameProvider in gameProviders.Values)
             {
@@ -353,19 +384,24 @@ namespace OX.Casino
                         batch.Save_ReplyBury(this, context, replyBury, block, rt);
                     }
                     break;
+                //case (byte)CasinoType.MarkGuessAnswer:
+                //    if (rt.GetDataModel<GuessAnswerReply>(bizshs, (byte)CasinoType.MarkGuessAnswer, out GuessAnswerReply guessAnswerReply))
+                //    {
+                //        batch.Save_GuessAnswer(this, guessAnswerReply);
+                //    }
+                //    break;
+                case (byte)CasinoType.CasinoWeb3NodePublish:
+                    if (rt.GetDataModel<Web3NodeSet>(bizshs, (byte)CasinoType.CasinoWeb3NodePublish, out Web3NodeSet web3NodeSet))
+                    {
+                        batch.Save_Web3Node(this, block, rt, web3NodeSet);
+                    }
+                    break;
             }
 
         }
         public void OnCasinoAskTransaction(WriteBatch batch, BlockContext context, Block block, AskTransaction at, ushort txindex, out ushort? n)
         {
-            if (at.Hash.ToString() == "0x1b9f3a85f4aa2647d07c11fa416df31605c48d4ead12b8d6a7871a2969523564")
-            {
-
-            }
-            else if (at.Hash.ToString() == "0x3ea43273dc87459c6fde596478c5c6dd993624985f7d3429eff687f8e8a86e47")
-            {
-
-            }
+             
             n = null;
             IReadOnlyDictionary<CoinReference, TransactionOutput> rfs = at.References;
             var shs = rfs.Values.GroupBy(m => m.ScriptHash).Select(n => n.Key.ToAddress());

@@ -120,5 +120,5 @@ namespace OX
         /// </summary>
         Floating = 1 << 1
     }
-   
+ 
 }

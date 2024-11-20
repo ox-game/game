@@ -35,7 +35,7 @@ namespace OX.Web.Pages
         public override string PageTitle => this.WebLocalString("娱乐", "Casino");
         List<MixRoom> ValidRooms = new List<MixRoom>();
         MixRoom Room = default;
-       
+
         public override async Task OnInitCompleted()
         {
             List<MixRoom> Rooms = new List<MixRoom>();
@@ -45,17 +45,30 @@ namespace OX.Web.Pages
             var module = ui.Modules.FirstOrDefault(m => m.ModuleName == "webagentmodule");
             if (module.IsNotNull() && module is WebAgentModule webAgentModule)
             {
-                foreach (var r in webAgentModule.Rooms)
+                if (webAgentModule.Rooms.IsNotNullAndEmpty())
                 {
-                    var room = bizPlugin.AllRooms.FirstOrDefault(m => m.RoomId == r);
-                    if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                    foreach (var r in webAgentModule.Rooms)
                     {
-                        Rooms.Add(room);
+                        var room = bizPlugin.AllRooms.FirstOrDefault(m => m.RoomId == r);
+                        if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                        {
+                            Rooms.Add(room);
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var room in bizPlugin.AllRooms)
+                    {
+                        if (room.IsNotNull() && VerifyRoom(bizPlugin, room))
+                        {
+                            Rooms.Add(room);
+                        }
                     }
                 }
             }
             this.ValidRooms = Rooms;
-             
+
             await Task.CompletedTask;
         }
         public bool VerifyRoom(ICasinoProvider provider, MixRoom room)

@@ -15,7 +15,8 @@ namespace OX
     public class casino
     {
         public const string Name = "casino";
-        public const string OfficalEventBoardId = "106374-1";
+        public const string OfficalEventBoardId = "625856-1";
+        public const string BitMarkSixEventBoardId = "625859-1";
         public static string[] PubKeys = new string[] {
         "02e673665c8a62067bc2764fa4fa75328494bf74546dbf60faf04dd8d21f25e324",
         "02a13213153cdcf622c66327f66b14ea01107488a2011ee2d33146f4354c9db018",

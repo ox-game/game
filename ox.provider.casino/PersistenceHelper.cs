@@ -18,12 +18,6 @@ namespace OX.Casino
             if (record != default && record.Value != default)
                 batch.Put(SliceBuilder.Begin(CasinoBizPersistencePrefixes.Casino_Setting).Add(model.Key), SliceBuilder.Begin().Add(record));
         }
-        //public static void Save_RoomDestroyRecord(this WriteBatch batch, BizRecordModel model, RoomDestroyRecord record)
-        //{
-        //    if (record != default)
-        //        batch.Put(SliceBuilder.Begin(CasinoBizPersistencePrefixes.Casino_Room_Destroy).Add(model.Key), SliceBuilder.Begin().Add(record));
-        //}
-
         public static void Save_RiddlesHashRecord(this WriteBatch batch, RiddlesHash record)
         {
             if (record != default)

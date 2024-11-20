@@ -29,98 +29,97 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommonAuthorize));
-            this.lb_from = new OX.Wallets.UI.Controls.DarkLabel();
-            this.cbAccounts = new OX.Wallets.UI.Controls.DarkComboBox();
-            this.bt_bet = new OX.Wallets.UI.Controls.DarkButton();
-            this.tb_address = new OX.Wallets.UI.Controls.DarkTextBox();
-            this.tb_markproof = new OX.Wallets.UI.Controls.DarkTextBox();
-            this.lb_markproof = new OX.Wallets.UI.Controls.DarkLabel();
-            this.panel = new System.Windows.Forms.Panel();
-            this.lb_balance = new OX.Wallets.UI.Controls.DarkLabel();
-            this.panel.SuspendLayout();
-            this.SuspendLayout();
+            lb_from = new Wallets.UI.Controls.DarkLabel();
+            cbAccounts = new Wallets.UI.Controls.DarkComboBox();
+            bt_bet = new Wallets.UI.Controls.DarkButton();
+            tb_address = new Wallets.UI.Controls.DarkTextBox();
+            tb_markproof = new Wallets.UI.Controls.DarkTextBox();
+            lb_markproof = new Wallets.UI.Controls.DarkLabel();
+            panel = new System.Windows.Forms.Panel();
+            lb_balance = new Wallets.UI.Controls.DarkLabel();
+            panel.SuspendLayout();
+            SuspendLayout();
             // 
             // lb_from
             // 
-            resources.ApplyResources(this.lb_from, "lb_from");
-            this.lb_from.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lb_from.Name = "lb_from";
+            resources.ApplyResources(lb_from, "lb_from");
+            lb_from.ForeColor = System.Drawing.Color.FromArgb(220, 220, 220);
+            lb_from.Name = "lb_from";
             // 
             // cbAccounts
             // 
-            this.cbAccounts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            resources.ApplyResources(this.cbAccounts, "cbAccounts");
-            this.cbAccounts.Name = "cbAccounts";
-            this.cbAccounts.SpecialBorderColor = null;
-            this.cbAccounts.SpecialFillColor = null;
-            this.cbAccounts.SpecialTextColor = null;
-            this.cbAccounts.SelectedIndexChanged += new System.EventHandler(this.darkComboBox1_SelectedIndexChanged);
+            cbAccounts.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            resources.ApplyResources(cbAccounts, "cbAccounts");
+            cbAccounts.Name = "cbAccounts";
+            cbAccounts.SpecialBorderColor = null;
+            cbAccounts.SpecialFillColor = null;
+            cbAccounts.SpecialTextColor = null;
+            cbAccounts.SelectedIndexChanged += darkComboBox1_SelectedIndexChanged;
             // 
             // bt_bet
             // 
-            resources.ApplyResources(this.bt_bet, "bt_bet");
-            this.bt_bet.Name = "bt_bet";
-            this.bt_bet.SpecialBorderColor = null;
-            this.bt_bet.SpecialFillColor = null;
-            this.bt_bet.SpecialTextColor = null;
-            this.bt_bet.Click += new System.EventHandler(this.bt_NewRoom_Click);
+            resources.ApplyResources(bt_bet, "bt_bet");
+            bt_bet.Name = "bt_bet";
+            bt_bet.SpecialBorderColor = null;
+            bt_bet.SpecialFillColor = null;
+            bt_bet.SpecialTextColor = null;
+            bt_bet.Click += bt_NewRoom_Click;
             // 
             // tb_address
             // 
-            this.tb_address.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.tb_address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_address.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            resources.ApplyResources(this.tb_address, "tb_address");
-            this.tb_address.Name = "tb_address";
-            this.tb_address.TextChanged += new System.EventHandler(this.tb_amount_TextChanged);
+            tb_address.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            tb_address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            tb_address.ForeColor = System.Drawing.Color.FromArgb(220, 220, 220);
+            resources.ApplyResources(tb_address, "tb_address");
+            tb_address.Name = "tb_address";
+            tb_address.TextChanged += tb_amount_TextChanged;
             // 
             // tb_markproof
             // 
-            this.tb_markproof.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
-            this.tb_markproof.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_markproof.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            resources.ApplyResources(this.tb_markproof, "tb_markproof");
-            this.tb_markproof.Name = "tb_markproof";
+            tb_markproof.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            tb_markproof.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            tb_markproof.ForeColor = System.Drawing.Color.FromArgb(220, 220, 220);
+            resources.ApplyResources(tb_markproof, "tb_markproof");
+            tb_markproof.Name = "tb_markproof";
             // 
             // lb_markproof
             // 
-            resources.ApplyResources(this.lb_markproof, "lb_markproof");
-            this.lb_markproof.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lb_markproof.Name = "lb_markproof";
+            resources.ApplyResources(lb_markproof, "lb_markproof");
+            lb_markproof.ForeColor = System.Drawing.Color.FromArgb(220, 220, 220);
+            lb_markproof.Name = "lb_markproof";
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.lb_markproof);
-            this.panel.Controls.Add(this.tb_markproof);
-            this.panel.Controls.Add(this.tb_address);
-            this.panel.Controls.Add(this.bt_bet);
-            this.panel.Controls.Add(this.cbAccounts);
-            this.panel.Controls.Add(this.lb_from);
-            this.panel.Controls.Add(this.lb_balance);
-            resources.ApplyResources(this.panel, "panel");
-            this.panel.Name = "panel";
+            panel.Controls.Add(lb_markproof);
+            panel.Controls.Add(tb_markproof);
+            panel.Controls.Add(tb_address);
+            panel.Controls.Add(bt_bet);
+            panel.Controls.Add(cbAccounts);
+            panel.Controls.Add(lb_from);
+            panel.Controls.Add(lb_balance);
+            resources.ApplyResources(panel, "panel");
+            panel.Name = "panel";
             // 
             // lb_balance
             // 
-            resources.ApplyResources(this.lb_balance, "lb_balance");
-            this.lb_balance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.lb_balance.Name = "lb_balance";
+            resources.ApplyResources(lb_balance, "lb_balance");
+            lb_balance.ForeColor = System.Drawing.Color.FromArgb(220, 220, 220);
+            lb_balance.Name = "lb_balance";
             // 
             // CommonAuthorize
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "CommonAuthorize";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClaimForm_FormClosing);
-            this.Load += new System.EventHandler(this.ClaimForm_Load);
-            this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(panel);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "CommonAuthorize";
+            FormClosing += ClaimForm_FormClosing;
+            Load += ClaimForm_Load;
+            panel.ResumeLayout(false);
+            panel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

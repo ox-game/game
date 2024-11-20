@@ -29,6 +29,7 @@ namespace OX.Web.Models
                     Path = "/_pc/casino",
                     Name = UIHelper.WebLocalString(language, "娱乐", "Casino"),
                     Key = "casino",
+                    Icon= "rocket",
                     Children = new MenuDataItem[] {
                     new MenuDataItem
                     {

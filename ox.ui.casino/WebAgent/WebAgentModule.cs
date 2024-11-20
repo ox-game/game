@@ -23,7 +23,7 @@ namespace OX.UI.WebAgent
     public class WebAgentModule : Module
     {
         public override string ModuleName { get { return "webagentmodule"; } }
-        public override uint Index { get { return 103; } }
+        public override uint Index { get { return 104; } }
         public INotecase Operater { get; private set; }
         public List<uint> Rooms = new List<uint>();
 

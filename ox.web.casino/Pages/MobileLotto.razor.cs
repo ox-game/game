@@ -48,7 +48,6 @@ namespace OX.Web.Pages
         IMessageService MessageService { get; set; }
         Fixed8 masterBalance = Fixed8.Zero;
         Fixed8 poolBalance = Fixed8.Zero;
-        char[] keys = default;
         string LotteryResult = string.Empty;
         Fixed8 MinBet = Fixed8.Zero;
         bool DrawerVisible = false;
@@ -173,7 +172,7 @@ namespace OX.Web.Pages
             CloseBet();
             await Task.CompletedTask;
         }
-        private async void doBet(Fixed8 amt)
+        private  void doBet(Fixed8 amt)
         {
             BuildBetPoint();
             if (this.Provider.IsNotNull())
